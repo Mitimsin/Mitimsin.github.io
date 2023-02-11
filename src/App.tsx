@@ -9,7 +9,6 @@ function App() {
       <Navbar />
       <Home />
       <Experience />
-      <div style={{ height: "2000px" }}></div>
     </div>
   );
 }

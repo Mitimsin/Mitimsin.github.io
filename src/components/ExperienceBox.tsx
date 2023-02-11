@@ -1,4 +1,5 @@
 import { VerticalTimelineElement } from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
 
 import { IoMdSchool } from "react-icons/io";
 import { MdWork, MdVolunteerActivism } from "react-icons/md";
@@ -29,13 +30,15 @@ const chooseType = (type: string) => {
 export const ExperienceBox = (props: props) => {
   return (
     <VerticalTimelineElement
-      className=""
+      className="vertical-timeline-element--education"
       date={props.date}
-      iconStyle={{ background: "#3b5249" }}
       icon={chooseType(props.type)}
+      iconClassName={"experience-box-icon"}
+      contentStyle={{ background: "#3b5249" }}
+      contentArrowStyle={{ borderRight: "7px solid #3b5249" }}
     >
-      <h3 className="">{props.title}</h3>
-      <p className="">{props.description}</p>
+      <h3 className="experience-box-header">{props.title}</h3>
+      <p>{props.description}</p>
     </VerticalTimelineElement>
   );
 };

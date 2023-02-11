@@ -1,3 +1,4 @@
+import "../styles/navbar.css";
 import { useState, useEffect } from "react";
 import { FaLinkedinIn, FaBars, FaTimes } from "react-icons/fa";
 import { AiOutlineGithub } from "react-icons/ai";

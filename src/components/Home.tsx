@@ -1,3 +1,4 @@
+import "../styles/home.css";
 import HomeFoto from "../assets/image/foto_1.jpg";
 
 export const Home = () => {
