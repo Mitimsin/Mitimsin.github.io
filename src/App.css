@@ -338,7 +338,6 @@ nav {
 .experience {
   position: relative;
   display: flex;
-  flex-direction: column;
   width: 100%;
   background-color: var(--secondaryColor);
   justify-content: center;
@@ -347,48 +346,16 @@ nav {
 }
 
 .experience-header {
-  margin-top: 40px;
+  margin-bottom: 20px;
   font-size: 40px;
 }
 
 .experience-tree {
-  width: 90%;
+  width: 95%;
   margin: 50px 0;
-  background-color: var(--tertiaryColor);
-  border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 0;
-}
-
-.experience-field {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px 0;
-}
-
-.experience-box {
-  background-color: var(--quaternaryColor);
-  display: flex;
-  flex-direction: column;
-  padding: 20px 30px;
-  border-radius: 10px;
-  align-items: flex-end;
-  width: 1000px;
-  flex: 1;
-}
-
-.experience-logo {
-  background-color: var(--primaryColor);
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 20px;
 }
