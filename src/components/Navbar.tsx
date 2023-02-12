@@ -11,49 +11,19 @@ export const Navbar = () => {
 
   const menuButton = document.querySelector(".nav-links");
 
-  document.querySelectorAll(".nav-links").forEach((n) =>
-    n.addEventListener("click", () => {
-      setIsOpen(!isOpen);
-    })
-  );
-
   useEffect(() => {
     /* === functions === */
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 50 && !isScrolled) {
         setIsScrolled(true);
         menuButton?.classList.add("scrolled");
-      } else {
+      } else if (window.scrollY <= 50 && isScrolled) {
         setIsScrolled(false);
         menuButton?.classList.remove("scrolled");
       }
     };
 
     const handleResize = () => setScreenWidth(window.innerWidth);
-
-    isOpen
-      ? menuButton?.classList.add("active")
-      : menuButton?.classList.remove("active");
-
-    /* === check the page hash and update === */
-    const homeElement = document.getElementById("home");
-    const experienceElement = document.getElementById("experience");
-
-    if (homeElement && experienceElement) {
-      const currentPosition = window.pageYOffset;
-
-      const homePosition = homeElement.offsetTop;
-      const experiencePosition = experienceElement.offsetTop;
-
-      if (
-        currentPosition >= homePosition &&
-        currentPosition < experiencePosition
-      ) {
-        setCurrentSection("home");
-      } else if (currentPosition >= experiencePosition) {
-        setCurrentSection("experience");
-      }
-    }
 
     /* === event listeners added  and removed === */
     window.addEventListener("scroll", handleScroll);
@@ -63,7 +33,7 @@ export const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isScrolled, isOpen, menuButton?.classList, currentSection]);
+  }, [isScrolled, menuButton?.classList, currentSection]);
 
   return (
     <nav className={isScrolled ? "page-scrolled" : ""}>
@@ -81,17 +51,6 @@ export const Navbar = () => {
         <div className="page-links">
           <a
             href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              const homeElement = document.getElementById("home");
-              if (homeElement) {
-                homeElement.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }
-              setIsOpen(false);
-              window.location.hash = "home";
-            }}
             className={`page-link-buttons  ${
               screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
             }`}
@@ -100,17 +59,6 @@ export const Navbar = () => {
           </a>
           <a
             href="#experience"
-            onClick={(e) => {
-              e.preventDefault();
-              const experienceElement = document.getElementById("experience");
-              if (experienceElement) {
-                experienceElement.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }
-              setIsOpen(false);
-              window.location.hash = "experience";
-            }}
             className={`page-link-buttons speed-1 ${
               screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
             }`}
@@ -119,17 +67,6 @@ export const Navbar = () => {
           </a>
           <a
             href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              const projectsElement = document.getElementById("projects");
-              if (projectsElement) {
-                projectsElement.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }
-              setIsOpen(false);
-              window.location.hash = "projects";
-            }}
             className={`page-link-buttons speed-2 ${
               screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
             }`}
@@ -167,6 +104,7 @@ export const Navbar = () => {
         className="menu"
         onClick={() => {
           setIsOpen(!isOpen);
+          menuButton?.classList.toggle("active");
         }}
       >
         {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}

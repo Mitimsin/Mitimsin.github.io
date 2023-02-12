@@ -15,7 +15,7 @@ export const Home = () => {
                 undergraduate. Dedicated, reliable, punctual, and driven to
                 accomplish great things. Motivated for success. Hard-working,
                 self-paced learner. Values pastimes and hobbies. A team player
-                thats waiting for the next professional software development
+                that's waiting for the next professional software development
                 position with excitement.
               </span>
             </div>
