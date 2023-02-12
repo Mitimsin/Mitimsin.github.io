@@ -3,8 +3,8 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-top: 30vh;
   padding-bottom: 20vh;
 }
@@ -57,9 +57,10 @@
   margin-left: 0;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 1170px) {
   .home {
     padding-top: 17vh;
+    justify-content: center;
   }
 
   .home-box {
@@ -89,4 +90,19 @@
     transform: scale(1.2);
     margin-left: 10px;
   }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(15%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideInRight {
+  animation: slideInRight 1.2s ease-in-out;
 }

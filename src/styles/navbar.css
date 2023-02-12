@@ -36,12 +36,12 @@ nav {
 }
 
 .page-link-buttons {
-  margin: 0 15px;
+  margin: 0 20px;
 }
 
 /* ======= social navigators ======= */
 .social-links {
-  margin: 0 15px;
+  margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +94,7 @@ nav {
   position: relative;
   z-index: 1;
   transition: 0.3s ease-in-out;
+  margin-left: 5px;
 }
 
 .contact:hover {
@@ -179,4 +180,41 @@ nav {
   .social-links {
     margin: 10px 11px 15px 10px;
   }
+
+  .hidden {
+    visibility: hidden;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.popIn {
+  visibility: hidden;
+  animation: popIn 1s ease-in-out forwards;
+}
+
+.popIn.speed-1 {
+  animation-delay: 0.1s;
+}
+
+.popIn.speed-2 {
+  animation-delay: 0.2s;
+}
+
+.popIn.speed-3 {
+  animation-delay: 0.3s;
+}
+
+.popIn.speed-4 {
+  animation-delay: 0.4s;
 }

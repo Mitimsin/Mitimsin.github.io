@@ -1,0 +1,9 @@
+.skill {
+  position: relative;
+  display: flex;
+  width: 80%;
+  height: 50vh;
+  margin: 50px;
+  margin-bottom: 50px;
+  background-color: var(--tertiaryColor);
+}

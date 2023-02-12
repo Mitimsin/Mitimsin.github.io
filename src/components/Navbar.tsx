@@ -6,6 +6,9 @@ import { AiOutlineGithub } from "react-icons/ai";
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [currentSection, setCurrentSection] = useState<string>("home");
+
   const menuButton = document.querySelector(".nav-links");
 
   document.querySelectorAll(".nav-links").forEach((n) =>
@@ -15,7 +18,8 @@ export const Navbar = () => {
   );
 
   useEffect(() => {
-    const onScroll = () => {
+    /* === functions === */
+    const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsScrolled(true);
         menuButton?.classList.add("scrolled");
@@ -25,16 +29,41 @@ export const Navbar = () => {
       }
     };
 
+    const handleResize = () => setScreenWidth(window.innerWidth);
+
     isOpen
       ? menuButton?.classList.add("active")
       : menuButton?.classList.remove("active");
 
-    window.addEventListener("scroll", onScroll);
+    /* === check the page hash and update === */
+    const homeElement = document.getElementById("home");
+    const experienceElement = document.getElementById("experience");
+
+    if (homeElement && experienceElement) {
+      const currentPosition = window.pageYOffset;
+
+      const homePosition = homeElement.offsetTop;
+      const experiencePosition = experienceElement.offsetTop;
+
+      if (
+        currentPosition >= homePosition &&
+        currentPosition < experiencePosition
+      ) {
+        setCurrentSection("home");
+      } else if (currentPosition >= experiencePosition) {
+        setCurrentSection("experience");
+      }
+    }
+
+    /* === event listeners added  and removed === */
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [isScrolled, isOpen, menuButton?.classList]);
+  }, [isScrolled, isOpen, menuButton?.classList, currentSection]);
 
   return (
     <nav className={isScrolled ? "page-scrolled" : ""}>
@@ -50,13 +79,61 @@ export const Navbar = () => {
 
       <div className="nav-links">
         <div className="page-links">
-          <a href="#home" className="page-link-buttons">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              const homeElement = document.getElementById("home");
+              if (homeElement) {
+                homeElement.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+              setIsOpen(false);
+              window.location.hash = "home";
+            }}
+            className={`page-link-buttons  ${
+              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
+            }`}
+          >
             Home
           </a>
-          <a href="#experience" className="page-link-buttons">
+          <a
+            href="#experience"
+            onClick={(e) => {
+              e.preventDefault();
+              const experienceElement = document.getElementById("experience");
+              if (experienceElement) {
+                experienceElement.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+              setIsOpen(false);
+              window.location.hash = "experience";
+            }}
+            className={`page-link-buttons speed-1 ${
+              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
+            }`}
+          >
             Experience
           </a>
-          <a href="#projects" className="page-link-buttons">
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              const projectsElement = document.getElementById("projects");
+              if (projectsElement) {
+                projectsElement.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+              setIsOpen(false);
+              window.location.hash = "projects";
+            }}
+            className={`page-link-buttons speed-2 ${
+              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
+            }`}
+          >
             Projects
           </a>
         </div>
@@ -65,7 +142,9 @@ export const Navbar = () => {
             href="https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-link-buttons"
+            className={`social-link-buttons speed-3 ${
+              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
+            }`}
           >
             <FaLinkedinIn size={24} />
           </a>
@@ -73,7 +152,9 @@ export const Navbar = () => {
             href="https://github.com/Mitimsin"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-link-buttons"
+            className={`social-link-buttons speed-4 ${
+              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
+            }`}
           >
             <AiOutlineGithub size={28} />
           </a>
