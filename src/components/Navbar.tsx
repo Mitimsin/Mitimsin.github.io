@@ -30,29 +30,20 @@ export const Navbar = () => {
       /* === check the page hash and update === */
       const homeElement = document.getElementById("home");
       const experienceElement = document.getElementById("experience");
-      const skillElement = document.getElementById("skill");
 
-      if (homeElement && experienceElement && skillElement) {
+      if (homeElement && experienceElement) {
         const currentPosition = window.pageYOffset;
 
         const homePosition = homeElement.offsetTop;
         const experiencePosition = experienceElement.offsetTop;
-        const skillPosition = skillElement.offsetTop;
-
-        console.log(currentSection);
 
         if (
           currentPosition >= homePosition &&
           currentPosition < experiencePosition - 200
         ) {
           setCurrentSection("home");
-        } else if (
-          currentPosition >= experiencePosition - 200 &&
-          currentPosition < skillPosition - 200
-        ) {
+        } else if (currentPosition >= experiencePosition - 200) {
           setCurrentSection("experience");
-        } else if (currentPosition >= skillPosition - 200) {
-          setCurrentSection("skill");
         }
       }
     };
@@ -100,6 +91,11 @@ export const Navbar = () => {
                 ? "page-link-button-active"
                 : "page-link-button"
             } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
+            onClick={() => {
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
           >
             Home
           </a>
@@ -110,18 +106,28 @@ export const Navbar = () => {
                 ? "page-link-button-active"
                 : "page-link-button"
             } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
+            onClick={() => {
+              document
+                .getElementById("experience")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
           >
             Experience
           </a>
           <a
-            href="#skill"
+            href="#projects"
             className={` speed-2 ${
-              currentSection === "skill"
+              currentSection === "projects"
                 ? "page-link-button-active"
                 : "page-link-button"
             } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
+            onClick={() => {
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
           >
-            Skills
+            Projects
           </a>
         </div>
         <div className="social-links">
