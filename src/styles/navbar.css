@@ -1,4 +1,4 @@
-nav {
+.navbar {
   padding: 60px 15px 60px 30px;
   position: fixed;
   width: 100%;
@@ -12,9 +12,10 @@ nav {
   transition: 0.32s ease-in-out;
 }
 
-.page-scrolled {
+.navbar.scrolled {
   padding: 0px 30px 0px 45px;
   background-color: var(--primaryColor);
+  box-shadow: 0 0 2em 0 rgba(0, 0, 0, 0.6);
 }
 
 /* ======= left branding of navbar ======= */
@@ -35,8 +36,21 @@ nav {
   align-items: center;
 }
 
-.page-link-buttons {
+.page-link-button {
   margin: 0 20px;
+  opacity: 0.7 !important;
+}
+.page-link-button:hover {
+  opacity: 1 !important;
+  transform: scale(1.02) !important;
+}
+
+.page-link-button-active {
+  margin: 0 20px;
+  opacity: 1 !important;
+}
+.page-link-button-active:hover {
+  transform: scale(1.02) !important;
 }
 
 /* ======= social navigators ======= */
@@ -47,7 +61,7 @@ nav {
   justify-content: center;
 }
 
-.social-link-buttons {
+.social-link-button {
   margin: 0 3px;
   width: 44px;
   height: 44px;
@@ -63,11 +77,11 @@ nav {
   position: relative;
 }
 
-.social-link-buttons:hover {
+.social-link-button:hover {
   color: var(--primaryColor);
 }
 
-.social-link-buttons::before {
+.social-link-button::before {
   content: "";
   position: absolute;
   width: 44px;
@@ -79,7 +93,7 @@ nav {
   transition: 0.3s ease-in-out;
 }
 
-.social-link-buttons:hover::before {
+.social-link-button:hover::before {
   transform: scale(1);
 }
 
@@ -133,12 +147,13 @@ nav {
     display: block;
   }
 
-  nav {
+  .navbar {
     padding: 60px 15px 60px 10px;
   }
 
-  .page-scrolled {
+  .navbar.scrolled {
     padding: 0px 20px 0px 15px;
+    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 0.5);
   }
 
   .nav-links {
@@ -146,7 +161,7 @@ nav {
     background-color: transparent;
     position: fixed;
     border-radius: 1rem;
-    right: -50%;
+    right: -60%;
     top: 85px;
     flex-direction: column;
     margin-top: 25px;
@@ -173,7 +188,11 @@ nav {
     flex-direction: column;
   }
 
-  .page-link-buttons {
+  .page-link-button {
+    margin: 3px;
+  }
+
+  .page-link-button-active {
     margin: 3px;
   }
 

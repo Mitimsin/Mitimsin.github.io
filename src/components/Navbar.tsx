@@ -10,20 +10,58 @@ export const Navbar = () => {
   const [currentSection, setCurrentSection] = useState<string>("home");
 
   const menuButton = document.querySelector(".nav-links");
+  const navbarStyle = document.querySelector(".navbar");
 
   useEffect(() => {
     /* === functions === */
+    const handleResize = () => setScreenWidth(window.innerWidth);
+
     const handleScroll = () => {
-      if (window.scrollY > 50 && !isScrolled) {
-        setIsScrolled(true);
+      if (window.scrollY > 50) {
         menuButton?.classList.add("scrolled");
-      } else if (window.scrollY <= 50 && isScrolled) {
-        setIsScrolled(false);
+        navbarStyle?.classList.add("scrolled");
+        setIsScrolled(true);
+      } else if (window.scrollY <= 50) {
         menuButton?.classList.remove("scrolled");
+        navbarStyle?.classList.remove("scrolled");
+        setIsScrolled(false);
+      }
+
+      /* === check the page hash and update === */
+      const homeElement = document.getElementById("home");
+      const experienceElement = document.getElementById("experience");
+      const skillElement = document.getElementById("skill");
+
+      if (homeElement && experienceElement && skillElement) {
+        const currentPosition = window.pageYOffset;
+
+        const homePosition = homeElement.offsetTop;
+        const experiencePosition = experienceElement.offsetTop;
+        const skillPosition = skillElement.offsetTop;
+
+        console.log(currentSection);
+
+        if (
+          currentPosition >= homePosition &&
+          currentPosition < experiencePosition - 200
+        ) {
+          setCurrentSection("home");
+        } else if (
+          currentPosition >= experiencePosition - 200 &&
+          currentPosition < skillPosition - 200
+        ) {
+          setCurrentSection("experience");
+        } else if (currentPosition >= skillPosition - 200) {
+          setCurrentSection("skill");
+        }
       }
     };
 
-    const handleResize = () => setScreenWidth(window.innerWidth);
+    if (isOpen) {
+      menuButton?.classList.add("active");
+    } else {
+      menuButton?.classList.remove("active");
+    }
 
     /* === event listeners added  and removed === */
     window.addEventListener("scroll", handleScroll);
@@ -33,10 +71,16 @@ export const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isScrolled, menuButton?.classList, currentSection]);
+  }, [
+    isScrolled,
+    isOpen,
+    currentSection,
+    menuButton?.classList,
+    navbarStyle?.classList,
+  ]);
 
   return (
-    <nav className={isScrolled ? "page-scrolled" : ""}>
+    <nav className="navbar">
       <div className="brand">
         <a href="/">
           <span style={{ fontSize: "1.5rem" }}>Mert Gürer</span>
@@ -51,27 +95,33 @@ export const Navbar = () => {
         <div className="page-links">
           <a
             href="#home"
-            className={`page-link-buttons  ${
-              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
-            }`}
+            className={` ${
+              currentSection === "home"
+                ? "page-link-button-active"
+                : "page-link-button"
+            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
           >
             Home
           </a>
           <a
             href="#experience"
-            className={`page-link-buttons speed-1 ${
-              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
-            }`}
+            className={` speed-1 ${
+              currentSection === "experience"
+                ? "page-link-button-active"
+                : "page-link-button"
+            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
           >
             Experience
           </a>
           <a
-            href="#projects"
-            className={`page-link-buttons speed-2 ${
-              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
-            }`}
+            href="#skill"
+            className={` speed-2 ${
+              currentSection === "skill"
+                ? "page-link-button-active"
+                : "page-link-button"
+            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
           >
-            Projects
+            Skills
           </a>
         </div>
         <div className="social-links">
@@ -79,7 +129,7 @@ export const Navbar = () => {
             href="https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`social-link-buttons speed-3 ${
+            className={`social-link-button speed-3 ${
               screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
             }`}
           >
@@ -89,7 +139,7 @@ export const Navbar = () => {
             href="https://github.com/Mitimsin"
             target="_blank"
             rel="noopener noreferrer"
-            className={`social-link-buttons speed-4 ${
+            className={`social-link-button speed-4 ${
               screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
             }`}
           >
@@ -104,7 +154,6 @@ export const Navbar = () => {
         className="menu"
         onClick={() => {
           setIsOpen(!isOpen);
-          menuButton?.classList.toggle("active");
         }}
       >
         {isOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
