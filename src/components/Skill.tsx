@@ -53,7 +53,7 @@ export const Skill = () => {
           <SkillField title="Hobby Skills" skills={hobbySkills} />
         </div>
       </div>
-      <div className="skill-field">hi</div>
+      <div className="skill-field">For more information</div>
     </section>
   );
 };
