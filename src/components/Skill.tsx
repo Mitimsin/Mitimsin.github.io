@@ -1,7 +1,7 @@
 import "../styles/skill.css";
+import { useEffect } from "react";
 import { SkillField } from "./SkillField";
 import cvFile from "../assets/cv.pdf";
-import { useEffect } from "react";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
@@ -70,7 +70,11 @@ export const Skill = () => {
       </div>
       <div className="skill-cv">
         <p>For more information check out my resume from here</p>
-        <a href={cvFile} download="Mert Gürer cv.pdf">
+        <a
+          href={cvFile}
+          download="Mert Gürer cv.pdf"
+          className="skill-cv-button-box"
+        >
           <button className="skill-cv-button">Download</button>
         </a>
       </div>

@@ -62,6 +62,10 @@
   transition: all 0.8s ease-in-out;
 }
 
+.skill-cv-button-box {
+  overflow: visible;
+}
+
 .showen {
   transform: translateX(0);
   filter: blur(0);

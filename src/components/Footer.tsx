@@ -28,7 +28,7 @@ export const Footer = () => {
 
   return (
     <section className="footer">
-      <a href="/">
+      <a href="#home">
         <img src={Logo} alt="" className="footer-logo" />
       </a>
       <div style={{ display: "flex" }}>

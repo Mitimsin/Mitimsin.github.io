@@ -148,7 +148,7 @@ export const Navbar = () => {
             />
           ))}
         </div>
-        <a href="#contact" className="contact">
+        <a href="#contact" className="contact-button">
           Contact Me
         </a>
       </div>

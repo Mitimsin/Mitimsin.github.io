@@ -1,4 +1,5 @@
 import "./App.css";
+import { Contact } from "./components/Contact";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
@@ -12,6 +13,7 @@ function App() {
       <Home />
       <Experience />
       <Skill />
+      <Contact />
       <Footer />
     </div>
   );
