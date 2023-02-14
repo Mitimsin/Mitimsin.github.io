@@ -4,6 +4,7 @@
   justify-content: space-around;
   align-items: center;
   background-color: var(--primaryColor);
+  margin-top: 40px;
 }
 
 a {
