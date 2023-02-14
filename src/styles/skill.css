@@ -9,8 +9,7 @@
 .skill-header {
   border: 2px solid white;
   border-radius: 10px;
-  margin-bottom: 40px;
-  margin-top: -30px;
+  margin: 40px 0px;
   padding: 10px 20px;
   font-size: 40px;
   background-color: var(--quaternaryColor);
@@ -29,7 +28,7 @@
   border-radius: 20px;
   flex-grow: 1;
   box-shadow: 0.5em 0.25em 7.5em 0 rgba(0, 0, 0, 0.35),
-    0 0.4em 1.25em 0 rgba(0, 0, 0, 0.15);
+    0 0.4em 1.25em 0 rgba(0, 0, 0, 0.25);
 }
 
 .skill-list {
@@ -38,9 +37,109 @@
   line-height: 1.5em;
 }
 
+.skill-cv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--secondaryColor);
+  padding: 25px 70px;
+  margin: 10px 15px;
+  border-radius: 20px;
+  box-shadow: 0.5em 0.25em 7.5em 0 rgba(0, 0, 0, 0.35),
+    0 0.4em 1.25em 0 rgba(0, 0, 0, 0.25);
+  font-size: 25px;
+  flex-grow: 1;
+  z-index: 0;
+  width: fit-content;
+  text-align: center;
+}
+
 @media only screen and (max-width: 1170px) {
-  .skill-fields {
-    flex-direction: column;
+  .skill {
     padding: 0 10px;
   }
+
+  .skill-fields {
+    flex-direction: column;
+  }
+
+  .skill-cv {
+    padding: 25px 15px;
+  }
+}
+
+/* CSS of the button */
+.skill-cv-button {
+  align-items: center;
+  background-color: var(--quaternaryColor);
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 15px;
+}
+
+.skill-cv-button:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.skill-cv-button:hover:after {
+  transform: translate(0, 0);
+}
+
+.skill-cv-button:active {
+  background-color: var(--tertiaryColor);
+  outline: 0;
+}
+
+.skill-cv-button:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .skill-cv-button {
+    padding: 0 40px;
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    transform: translateX(10%);
+
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.enterFromLeft {
+  animation: enterFromLeft 1s ease-in-out;
 }

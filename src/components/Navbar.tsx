@@ -1,7 +1,14 @@
 import "../styles/navbar.css";
 import { useState, useEffect } from "react";
-import { FaLinkedinIn, FaBars, FaTimes } from "react-icons/fa";
-import { AiOutlineGithub } from "react-icons/ai";
+import {
+  FaLinkedinIn,
+  FaGithub,
+  FaInstagram,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
+import { NavbarPageButton } from "./NavbarPageButton";
+import { NavbarSocialButton } from "./NavbarSocialButton";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +18,27 @@ export const Navbar = () => {
 
   const menuButton = document.querySelector(".nav-links");
   const navbarStyle = document.querySelector(".navbar");
+
+  /* ======= declare page nav buttons and social buttons ======= */
+  const navbarPageMembers = ["home", "experience", "skill", "projects"];
+  const navbarSocialMembers = [
+    {
+      logo: FaLinkedinIn,
+      size: 24,
+      link: "https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/",
+    },
+    {
+      logo: FaGithub,
+      size: 28,
+      link: "https://github.com/Mitimsin",
+    },
+    {
+      logo: FaInstagram,
+      size: 28,
+      link: "https://www.instagram.com/mertt_gurer/?hl=en",
+    },
+  ];
+  /* ======= declare page nav buttons and social buttons ======= */
 
   useEffect(() => {
     /* === functions === */
@@ -28,24 +56,30 @@ export const Navbar = () => {
       }
 
       /* === check the page hash and update === */
-      const homeElement = document.getElementById("home");
-      const experienceElement = document.getElementById("experience");
+      const currentPosition = window.pageYOffset;
 
-      if (homeElement && experienceElement) {
-        const currentPosition = window.pageYOffset;
+      for (let i = 0; i < navbarPageMembers.length; i++) {
+        const firstName = document.getElementById(navbarPageMembers[i]);
+        const secondName = document.getElementById(navbarPageMembers[i + 1]);
 
-        const homePosition = homeElement.offsetTop;
-        const experiencePosition = experienceElement.offsetTop;
+        if (firstName && secondName) {
+          const firstZone = firstName.offsetTop - 100;
+          const secondZone = secondName.offsetTop - 100;
 
-        if (
-          currentPosition >= homePosition &&
-          currentPosition < experiencePosition - 200
-        ) {
-          setCurrentSection("home");
-        } else if (currentPosition >= experiencePosition - 200) {
-          setCurrentSection("experience");
+          if (currentPosition >= firstZone && currentPosition < secondZone) {
+            if (currentSection !== navbarPageMembers[i]) {
+              setCurrentSection(navbarPageMembers[i]);
+            }
+          }
+        } else if (firstName) {
+          const firstZone = firstName.offsetTop - 100;
+
+          if (currentPosition >= firstZone) {
+            setCurrentSection(navbarPageMembers[i]);
+          }
         }
       }
+      /* === check the page hash and update === */
     };
 
     if (isOpen) {
@@ -84,73 +118,35 @@ export const Navbar = () => {
 
       <div className="nav-links">
         <div className="page-links">
-          <a
-            href="#home"
-            className={` ${
-              currentSection === "home"
-                ? "page-link-button-active"
-                : "page-link-button"
-            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
-            onClick={() => {
-              document
-                .getElementById("home")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="#experience"
-            className={` speed-1 ${
-              currentSection === "experience"
-                ? "page-link-button-active"
-                : "page-link-button"
-            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
-            onClick={() => {
-              document
-                .getElementById("experience")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-          >
-            Experience
-          </a>
-          <a
-            href="#projects"
-            className={` speed-2 ${
-              currentSection === "projects"
-                ? "page-link-button-active"
-                : "page-link-button"
-            } ${screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"}`}
-            onClick={() => {
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-          >
-            Projects
-          </a>
+          {navbarPageMembers.map((member, index) => (
+            <NavbarPageButton
+              key={index}
+              name={member}
+              currentSection={currentSection}
+              screenWidth={screenWidth}
+              isOpen={isOpen}
+              extraClass={`speed-${index}`}
+              handleOnClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            />
+          ))}
         </div>
         <div className="social-links">
-          <a
-            href="https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`social-link-button speed-3 ${
-              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
-            }`}
-          >
-            <FaLinkedinIn size={24} />
-          </a>
-          <a
-            href="https://github.com/Mitimsin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`social-link-button speed-4 ${
-              screenWidth > 1023 ? "popIn" : isOpen ? "popIn" : "hidden"
-            }`}
-          >
-            <AiOutlineGithub size={28} />
-          </a>
+          {navbarSocialMembers.map((member, index) => (
+            <NavbarSocialButton
+              key={index}
+              logo={member.logo}
+              size={member.size}
+              url={member.link}
+              screenWidth={screenWidth}
+              isOpen={isOpen}
+              extraClass={`speed-${index + navbarPageMembers.length}`}
+              handleOnClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            />
+          ))}
         </div>
         <a href="#contact" className="contact">
           Contact Me

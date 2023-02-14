@@ -222,6 +222,10 @@
   animation: popIn 1s ease-in-out forwards;
 }
 
+.popIn.speed-0 {
+  animation-delay: 0s;
+}
+
 .popIn.speed-1 {
   animation-delay: 0.1s;
 }
@@ -236,4 +240,16 @@
 
 .popIn.speed-4 {
   animation-delay: 0.4s;
+}
+
+.popIn.speed-5 {
+  animation-delay: 0.5s;
+}
+
+.popIn.speed-6 {
+  animation-delay: 0.6s;
+}
+
+.popIn.speed-7 {
+  animation-delay: 0.7s;
 }

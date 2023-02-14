@@ -11,7 +11,7 @@ function App() {
       <Home />
       <Experience />
       <Skill />
-      <div style={{ height: "200px" }}></div>
+      <div style={{ height: "500px" }}></div>
     </div>
   );
 }

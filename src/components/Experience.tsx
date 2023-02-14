@@ -8,14 +8,12 @@ import { BiPlus } from "react-icons/bi";
 
 const timelineObjects = [
   {
-    id: 1,
     title: "Burak Bora High School - Istanbul",
     description: "Four year's of High School education",
     date: "2015 - 2019",
     type: Type.education,
   },
   {
-    id: 2,
     title: "IJGD - Germany",
     description:
       "Ran a house full of volunteers. Sailed and camped in the wildlife. Learned how to live in nature.",
@@ -23,7 +21,6 @@ const timelineObjects = [
     type: Type.volunteering,
   },
   {
-    id: 3,
     title: "IJGD - Germany",
     description:
       "Maintenance of the storage places, construction of a prefabricated house for a children's summer camp",
@@ -31,7 +28,6 @@ const timelineObjects = [
     type: Type.volunteering,
   },
   {
-    id: 4,
     title: "AFS Exchange Student - Dominican Republic",
     description:
       "Exchange Student with AFS at Dominican Republic in web development with HTML and CSS for 1 year",
@@ -39,7 +35,6 @@ const timelineObjects = [
     type: Type.education,
   },
   {
-    id: 5,
     title: "Gebze Technical University - Kocaeli",
     description: "Computer Science Engineering student",
     date: "2019 - Present",
@@ -53,10 +48,10 @@ export const Experience = () => {
       <div className="experience-tree">
         <h1 className="experience-header">Experiences</h1>
         <VerticalTimeline lineColor="#3b5249" className="vertical-timeline">
-          {timelineObjects.map((object) => {
+          {timelineObjects.map((object, index) => {
             return (
               <ExperienceBox
-                key={object.id}
+                key={index}
                 title={object.title}
                 description={object.description}
                 date={object.date}

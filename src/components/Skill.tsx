@@ -1,5 +1,6 @@
 import "../styles/skill.css";
 import { SkillField } from "./SkillField";
+import cvFile from "../assets/cv.pdf";
 
 const technicalSkills = [
   "C",
@@ -53,7 +54,12 @@ export const Skill = () => {
           <SkillField title="Hobby Skills" skills={hobbySkills} />
         </div>
       </div>
-      <div className="skill-field">For more information</div>
+      <div className="skill-cv enterFromLeft">
+        For more information check out my resume from here
+        <a href={cvFile} download="Mert Gürer cv.pdf">
+          <button className="skill-cv-button">Download</button>
+        </a>
+      </div>
     </section>
   );
 };
