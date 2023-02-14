@@ -142,6 +142,10 @@
   border: none;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 1023px) {
   .menu {
     display: block;
@@ -199,19 +203,17 @@
   .social-links {
     margin: 10px 11px 15px 10px;
   }
-
-  .hidden {
-    visibility: hidden;
-  }
 }
 
 @keyframes popIn {
   from {
     opacity: 0;
+    filter: blur(5px);
     transform: translateY(-20%);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
     visibility: visible;
   }
@@ -219,7 +221,7 @@
 
 .popIn {
   visibility: hidden;
-  animation: popIn 1s ease-in-out forwards;
+  animation: popIn 0.7s ease-in-out forwards;
 }
 
 .popIn.speed-0 {
@@ -252,4 +254,12 @@
 
 .popIn.speed-7 {
   animation-delay: 0.7s;
+}
+
+.popIn.speed-8 {
+  animation-delay: 0.8s;
+}
+
+.popIn.speed-9 {
+  animation-delay: 0.9s;
 }

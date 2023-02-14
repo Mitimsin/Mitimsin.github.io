@@ -5,7 +5,7 @@ interface props {
 
 export const SkillField = (props: props) => {
   return (
-    <div className="skill-field enterFromLeft">
+    <div className="skill-field">
       <h1>{props.title}</h1>
       <ul className="skill-list">
         {props.skills.map((skill, index) => (

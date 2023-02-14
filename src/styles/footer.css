@@ -1,0 +1,26 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--primaryColor);
+}
+
+a {
+  overflow: hidden;
+}
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(5%);
+  transition: all 0.7s ease-in-out;
+}
+
+.footer-logo.showen {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}

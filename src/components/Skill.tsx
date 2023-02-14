@@ -1,6 +1,15 @@
 import "../styles/skill.css";
 import { SkillField } from "./SkillField";
 import cvFile from "../assets/cv.pdf";
+import { useEffect } from "react";
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((el) => {
+    if (el.isIntersecting) {
+      el.target.classList.add("showen");
+    }
+  });
+});
 
 const technicalSkills = [
   "C",
@@ -39,6 +48,11 @@ const hobbySkills = [
 ];
 
 export const Skill = () => {
+  useEffect(() => {
+    const skillFields = document.querySelectorAll(".skill-field, .skill-cv");
+    skillFields.forEach((el) => observer.observe(el));
+  });
+
   return (
     <section className="skill" id="skill">
       <h1 className="skill-header">My Skills</h1>
@@ -54,8 +68,8 @@ export const Skill = () => {
           <SkillField title="Hobby Skills" skills={hobbySkills} />
         </div>
       </div>
-      <div className="skill-cv enterFromLeft">
-        For more information check out my resume from here
+      <div className="skill-cv">
+        <p>For more information check out my resume from here</p>
         <a href={cvFile} download="Mert Gürer cv.pdf">
           <button className="skill-cv-button">Download</button>
         </a>

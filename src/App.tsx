@@ -1,5 +1,6 @@
 import "./App.css";
 import { Experience } from "./components/Experience";
+import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
 import { Navbar } from "./components/Navbar";
 import { Skill } from "./components/Skill";
@@ -11,7 +12,7 @@ function App() {
       <Home />
       <Experience />
       <Skill />
-      <div style={{ height: "500px" }}></div>
+      <Footer />
     </div>
   );
 }

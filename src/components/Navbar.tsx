@@ -10,6 +10,27 @@ import {
 import { NavbarPageButton } from "./NavbarPageButton";
 import { NavbarSocialButton } from "./NavbarSocialButton";
 
+/* ======= declare page nav buttons and social buttons ======= */
+const navbarPageMembers = ["home", "experience", "skill"];
+export const navbarSocialMembers = [
+  {
+    logo: FaLinkedinIn,
+    size: 24,
+    link: "https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/",
+  },
+  {
+    logo: FaGithub,
+    size: 28,
+    link: "https://github.com/Mitimsin",
+  },
+  {
+    logo: FaInstagram,
+    size: 28,
+    link: "https://www.instagram.com/mertt_gurer/?hl=en",
+  },
+];
+/* ======= declare page nav buttons and social buttons ======= */
+
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -18,27 +39,6 @@ export const Navbar = () => {
 
   const menuButton = document.querySelector(".nav-links");
   const navbarStyle = document.querySelector(".navbar");
-
-  /* ======= declare page nav buttons and social buttons ======= */
-  const navbarPageMembers = ["home", "experience", "skill", "projects"];
-  const navbarSocialMembers = [
-    {
-      logo: FaLinkedinIn,
-      size: 24,
-      link: "https://www.linkedin.com/in/mert-g%C3%BCrer-45039b206/",
-    },
-    {
-      logo: FaGithub,
-      size: 28,
-      link: "https://github.com/Mitimsin",
-    },
-    {
-      logo: FaInstagram,
-      size: 28,
-      link: "https://www.instagram.com/mertt_gurer/?hl=en",
-    },
-  ];
-  /* ======= declare page nav buttons and social buttons ======= */
 
   useEffect(() => {
     /* === functions === */
@@ -127,7 +127,7 @@ export const Navbar = () => {
               isOpen={isOpen}
               extraClass={`speed-${index}`}
               handleOnClick={() => {
-                setIsOpen(!isOpen);
+                setIsOpen(false);
               }}
             />
           ))}
@@ -143,7 +143,7 @@ export const Navbar = () => {
               isOpen={isOpen}
               extraClass={`speed-${index + navbarPageMembers.length}`}
               handleOnClick={() => {
-                setIsOpen(!isOpen);
+                setIsOpen(false);
               }}
             />
           ))}
