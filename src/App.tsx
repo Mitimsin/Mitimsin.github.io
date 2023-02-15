@@ -12,6 +12,7 @@ function App() {
       <Navbar />
       <Home />
       <Experience />
+      <div className="spacer"></div>
       <Skill />
       <Contact />
       <Footer />

@@ -55,3 +55,17 @@ a {
   color: var(--fontColor);
   text-decoration: none;
 }
+
+.spacer {
+  position: absolute;
+  aspect-ratio: 960/300;
+  width: 100%;
+  background-image: url("./assets/wave.svg");
+  background-size: cover;
+}
+
+@media only screen and (max-width: 1170px) {
+  .spacer {
+    aspect-ratio: 960 /700;
+  }
+}

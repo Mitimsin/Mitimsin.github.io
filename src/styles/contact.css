@@ -1,4 +1,77 @@
 .contact {
   width: 100%;
   display: flex;
+  justify-content: center;
+  background-color: rgba(59, 82, 73, 0.7);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  color: #fff;
+  margin: 0 0 8px 0;
+  padding: 18px 26px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  transition: 0.3s ease-in-out;
+}
+.contact form input:focus,
+.contact form textarea:focus {
+  background: rgba(255, 255, 255, 1);
+  color: #121212;
+}
+
+.contact form textarea::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.contact form textarea:focus::placeholder {
+  color: #121212;
+  opacity: 0.8;
+}
+
+/* CSS for the button */
+.contact-form-button {
+  box-shadow: 0 0 0 0.1em inset var(--primaryColor);
+  --_g: linear-gradient(var(--primaryColor) 0 0) no-repeat;
+
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.2em 1em;
+  font-weight: 500;
+  border: none;
+  color: var(--primaryColor);
+
+  outline-offset: 0.1em;
+  transition: background-size 0.4s, background-position 0s 0.4s;
+}
+
+.contact-form-button:hover {
+  --_p: 100%;
+  color: var(--fontColor);
+  transition: all 0.4s, background-size 0s;
+}
+
+.contact-form-button:active {
+  box-shadow: 0 0 9e9Q inset #0009;
+  background-color: var(--primaryColor);
+  color: #fff;
 }
