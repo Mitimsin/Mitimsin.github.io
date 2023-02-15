@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: rgba(59, 82, 73, 0.7);
+  background: linear-gradient(90.21deg, #aa367c -5.91%, #4a2fbd 111.58%);
 }
 
 .contact-form {
@@ -11,8 +11,7 @@
   padding: 50px;
 }
 
-.contact form input,
-.contact form textarea {
+.contact-input-field {
   width: 100%;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -25,19 +24,17 @@
   letter-spacing: 0.8px;
   transition: 0.3s ease-in-out;
 }
-.contact form input:focus,
-.contact form textarea:focus {
+.contact-input-field:focus {
   background: rgba(255, 255, 255, 1);
   color: #121212;
 }
 
-.contact form textarea::placeholder {
+.contact-input-field::placeholder {
   font-size: 16px;
   font-weight: 400;
   color: #fff;
 }
-
-.contact form textarea:focus::placeholder {
+.contact-input-field:focus::placeholder {
   color: #121212;
   opacity: 0.8;
 }

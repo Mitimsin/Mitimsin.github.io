@@ -61,12 +61,23 @@ export const Contact = () => {
   return (
     <section className="contact" id="contact">
       <form ref={form} onSubmit={handleSend} className="contact-form">
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>E-mail</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="user_message" />
+        <input
+          type="text"
+          name="user_name"
+          placeholder="Full Name"
+          className="contact-input-field"
+        />
+        <input
+          type="email"
+          name="user_email"
+          placeholder="E-mail Adress"
+          className="contact-input-field"
+        />
+        <textarea
+          name="user_message"
+          className="contact-input-field"
+          placeholder="Message"
+        />
         <input
           type="submit"
           value={buttonText}
