@@ -47,14 +47,15 @@ const hobbySkills = [
   "Video Games",
 ];
 
-export const Skill = () => {
+export const Skills = () => {
   useEffect(() => {
     const skillFields = document.querySelectorAll(".skill-field, .skill-cv");
     skillFields.forEach((el) => observer.observe(el));
   });
 
   return (
-    <section className="skill" id="skill">
+    <section className="skill" id="skills">
+      <div className="spacer"></div>
       <h1 className="skill-header">My Skills</h1>
       <div className="skill-fields">
         <SkillField title="Technical Skills" skills={technicalSkills} />
@@ -78,6 +79,7 @@ export const Skill = () => {
           <button className="skill-cv-button">Download</button>
         </a>
       </div>
+      <div className="spacer flip"></div>
     </section>
   );
 };

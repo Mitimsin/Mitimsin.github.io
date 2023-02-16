@@ -1,14 +1,44 @@
 .contact {
   width: 100%;
   display: flex;
-  justify-content: center;
-  background: linear-gradient(90.21deg, #aa367c -5.91%, #4a2fbd 111.58%);
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    var(--tertiaryColor),
+    var(--secondaryColor)
+  );
+  text-align: center;
+}
+
+.contact-header {
+  font-size: 40px;
+}
+
+.contact-text {
+  margin-top: 5px;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.contact-area {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 50px;
+}
+
+.contact-image {
+  display: flex;
+  align-items: center;
+  transform: rotate(-10deg);
 }
 
 .contact-form {
+  width: 500px;
   display: flex;
   flex-direction: column;
-  padding: 50px;
 }
 
 .contact-input-field {
@@ -17,16 +47,18 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   color: #fff;
-  margin: 0 0 8px 0;
+  margin: 7px 0;
   padding: 18px 26px;
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.8px;
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-family: "Centra";
 }
 .contact-input-field:focus {
   background: rgba(255, 255, 255, 1);
   color: #121212;
+  outline: none;
 }
 
 .contact-input-field::placeholder {
@@ -36,7 +68,28 @@
 }
 .contact-input-field:focus::placeholder {
   color: #121212;
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+@media only screen and (max-width: 1170px) {
+  .contact-header {
+    font-size: 30px;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+
+  .contact-area {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 0 50px 0;
+    padding: 0 40px;
+  }
+
+  .contact-image {
+    display: none;
+  }
 }
 
 /* CSS for the button */
@@ -55,7 +108,9 @@
   padding: 0.2em 1em;
   font-weight: 500;
   border: none;
-  color: var(--primaryColor);
+  border-radius: 20px;
+  color: var(--fontColor);
+  margin: 7px 0;
 
   outline-offset: 0.1em;
   transition: background-size 0.4s, background-position 0s 0.4s;
@@ -63,7 +118,7 @@
 
 .contact-form-button:hover {
   --_p: 100%;
-  color: var(--fontColor);
+  color: #121212;
   transition: all 0.4s, background-size 0s;
 }
 

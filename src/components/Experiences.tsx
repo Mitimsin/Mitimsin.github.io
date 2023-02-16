@@ -42,9 +42,9 @@ const timelineObjects = [
   },
 ];
 
-export const Experience = () => {
+export const Experiences = () => {
   return (
-    <section className="experience" id="experience">
+    <section className="experience" id="experiences">
       <div className="experience-tree">
         <h1 className="experience-header">Experiences</h1>
         <VerticalTimeline lineColor="#3b5249" className="vertical-timeline">

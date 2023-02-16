@@ -1,0 +1,16 @@
+.projects {
+  width: 100%;
+}
+
+.projects-tab-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.project-tab-bar-piece {
+  padding: 10px 50px;
+}
+
+.projects-tab-bar-piece .active {
+  padding: 0;
+}

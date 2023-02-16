@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {
   FaLinkedinIn,
   FaGithub,
+  FaTwitter,
   FaInstagram,
   FaBars,
   FaTimes,
@@ -11,7 +12,7 @@ import { NavbarPageButton } from "./NavbarPageButton";
 import { NavbarSocialButton } from "./NavbarSocialButton";
 
 /* ======= declare page nav buttons and social buttons ======= */
-const navbarPageMembers = ["home", "experience", "skill"];
+const navbarPageMembers = ["home", "experiences", "skills", "projects"];
 export const navbarSocialMembers = [
   {
     logo: FaLinkedinIn,
@@ -23,11 +24,16 @@ export const navbarSocialMembers = [
     size: 28,
     link: "https://github.com/Mitimsin",
   },
-  {
+  /*   {
+    logo: FaTwitter,
+    size: 24,
+    link: "https://twitter.com/Mitimsin",
+  }, */
+  /*   {
     logo: FaInstagram,
     size: 28,
     link: "https://www.instagram.com/mertt_gurer/?hl=en",
-  },
+  }, */
 ];
 /* ======= declare page nav buttons and social buttons ======= */
 

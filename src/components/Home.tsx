@@ -25,14 +25,14 @@ export const Home = () => {
       <div className="home-box">
         <div className="home-text">
           <h1 className="home-text-header">Hi! I'm Mert</h1>
-          <span>
+          <p>
             Welcome to my portfolio. I am an eager 3rd-year computer science
             undergraduate. Dedicated, reliable, punctual, and driven to
             accomplish great things. Motivated for success. Hard-working,
             self-paced learner. Values pastimes and hobbies. A team player
             that's waiting for the next professional software development
             position with excitement.
-          </span>
+          </p>
         </div>
         <div className="home-image-frame">
           <img src={HomeFoto} alt="" className="home-image" />

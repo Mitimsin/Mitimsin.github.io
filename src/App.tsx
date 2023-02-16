@@ -1,19 +1,20 @@
 import "./App.css";
 import { Contact } from "./components/Contact";
-import { Experience } from "./components/Experience";
+import { Experiences } from "./components/Experiences";
 import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
 import { Navbar } from "./components/Navbar";
-import { Skill } from "./components/Skill";
+import { Projects } from "./components/Projects";
+import { Skills } from "./components/Skills";
 
 function App() {
   return (
     <div>
       <Navbar />
       <Home />
-      <Experience />
-      <div className="spacer"></div>
-      <Skill />
+      <Experiences />
+      <Skills />
+      <Projects />
       <Contact />
       <Footer />
     </div>
