@@ -71,6 +71,7 @@ export const Contact = () => {
 
   return (
     <section className="contact" id="contact">
+      <div className="spacer wave2"></div>
       <h1 className="contact-header ">Have Some Questions?</h1>
       <p className="contact-text">
         mert.gurer@hotmail.com.tr <br /> +90 534 069 97 79

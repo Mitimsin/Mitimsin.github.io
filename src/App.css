@@ -41,10 +41,10 @@ body {
   overflow-x: hidden;
   position: relative;
   background-image: radial-gradient(
-    rgba(59, 83, 73, 0.45),
+    rgba(59, 83, 73, 0.55),
     rgba(59, 83, 73, 0.65),
     rgba(59, 83, 73, 0.65),
-    rgba(59, 83, 73, 0.45)
+    rgba(59, 83, 73, 0.55)
   );
   height: 100vh;
   color: var(--fontColor);
@@ -54,24 +54,47 @@ body {
 a {
   color: var(--fontColor);
   text-decoration: none;
+  font-family: "Centra", sans-serif;
+}
+
+button {
+  font-family: "Centra", sans-serif;
+}
+
+.wave {
+  background-image: url("./assets/image/wave.svg");
+  aspect-ratio: 960/300;
+}
+
+.wave2 {
+  background-image: url("./assets/image/wave2.svg");
+  aspect-ratio: 900/300;
 }
 
 .spacer {
   position: absolute;
-  aspect-ratio: 960/300;
   width: 100%;
-  background-image: url("./assets/image/wave.svg");
+
   background-size: cover;
   transform: translateY(-1px);
+  z-index: 0;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 1170px) {
-  .spacer {
+  .wave {
     aspect-ratio: 960 / 900;
+  }
+
+  .wave2 {
+    aspect-ratio: 900 / 900;
   }
 }
 
 .flip {
   transform: rotate(180deg) translateY(-2px);
+}
+
+.bottom {
   bottom: 0;
 }

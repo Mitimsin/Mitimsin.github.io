@@ -30,10 +30,6 @@
   flex-grow: 1;
   box-shadow: 0.5em 0.25em 7.5em 0 rgba(0, 0, 0, 0.35),
     0 0.4em 1.25em 0 rgba(0, 0, 0, 0.25);
-  transform: translateX(10%);
-  filter: blur(2px);
-  opacity: 0.6;
-  transition: all 0.8s ease-in-out;
 }
 
 .skill-list {
@@ -57,15 +53,18 @@
   z-index: 0;
   width: fit-content;
   text-align: center;
-  transform: translateX(10%);
-  filter: blur(2px);
-  opacity: 0.6;
-  transition: all 0.8s ease-in-out;
   z-index: 1;
 }
 
 .skill-cv-button-box {
   overflow: visible;
+}
+
+.slideInRight {
+  transform: translateX(10%);
+  filter: blur(2px);
+  opacity: 0.6;
+  transition: all 0.8s ease-in-out;
 }
 
 .showen {

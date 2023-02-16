@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import {
   FaLinkedinIn,
   FaGithub,
-  FaTwitter,
-  FaInstagram,
+  /*   FaTwitter,
+  FaInstagram, */
   FaBars,
   FaTimes,
 } from "react-icons/fa";
@@ -154,7 +154,11 @@ export const Navbar = () => {
             />
           ))}
         </div>
-        <a href="#contact" className="contact-button">
+        <a
+          href="#contact"
+          className="contact-button"
+          onClick={() => setIsOpen(false)}
+        >
           Contact Me
         </a>
       </div>

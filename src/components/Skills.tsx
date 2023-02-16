@@ -7,6 +7,8 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
     if (el.isIntersecting) {
       el.target.classList.add("showen");
+    } else {
+      el.target.classList.remove("showen");
     }
   });
 });
@@ -55,7 +57,7 @@ export const Skills = () => {
 
   return (
     <section className="skill" id="skills">
-      <div className="spacer"></div>
+      <div className="spacer wave"></div>
       <h1 className="skill-header">My Skills</h1>
       <div className="skill-fields">
         <SkillField title="Technical Skills" skills={technicalSkills} />
@@ -69,7 +71,7 @@ export const Skills = () => {
           <SkillField title="Hobby Skills" skills={hobbySkills} />
         </div>
       </div>
-      <div className="skill-cv">
+      <div className="skill-cv slideInRight">
         <p>For more information check out my resume from here</p>
         <a
           href={cvFile}
@@ -79,7 +81,7 @@ export const Skills = () => {
           <button className="skill-cv-button">Download</button>
         </a>
       </div>
-      <div className="spacer flip"></div>
+      <div className="spacer wave flip bottom"></div>
     </section>
   );
 };
