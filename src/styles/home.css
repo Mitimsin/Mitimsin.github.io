@@ -68,7 +68,7 @@
   margin-left: 0;
 }
 
-@media only screen and (max-width: 1170px) {
+@media only screen and (max-width: 1400px) {
   .home {
     padding-top: 17vh;
     align-items: center;

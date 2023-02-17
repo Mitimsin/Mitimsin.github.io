@@ -1,8 +1,8 @@
 import "../styles/footer.css";
 import Logo from "../assets/image/logo.png";
 import { useEffect, useState } from "react";
-import { NavbarSocialButton } from "./NavbarSocialButton";
-import { navbarSocialMembers } from "./Navbar";
+import { NavbarSocialButton } from "./Navbar/NavbarSocialButton";
+import { navbarSocialMembers } from "./Navbar/Navbar";
 
 export const Footer = () => {
   let [isOpen, setIsOpen] = useState(false);

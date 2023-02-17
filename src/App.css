@@ -59,6 +59,7 @@ a {
 
 button {
   font-family: "Centra", sans-serif;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 .wave {
@@ -98,4 +99,22 @@ button {
 
 .bottom {
   bottom: 0;
+}
+
+.error-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15vh;
+}
+
+.error-button {
+  border: 3px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin: 20px;
+}
+
+.error-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }

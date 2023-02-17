@@ -1,7 +1,7 @@
-import "../styles/skill.css";
+import "../../styles/skill.css";
 import { useEffect } from "react";
 import { SkillField } from "./SkillField";
-import cvFile from "../assets/cv.pdf";
+import cvFile from "../../assets/cv.pdf";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {

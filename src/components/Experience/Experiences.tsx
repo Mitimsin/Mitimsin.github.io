@@ -1,4 +1,4 @@
-import "../styles/experience.css";
+import "../../styles/experience.css";
 import {
   VerticalTimeline,
   VerticalTimelineElement,

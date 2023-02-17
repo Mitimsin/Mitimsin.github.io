@@ -1,4 +1,4 @@
-import "../styles/navbar.css";
+import "../../styles/navbar.css";
 import { useState, useEffect } from "react";
 import {
   FaLinkedinIn,
