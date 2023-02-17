@@ -96,7 +96,7 @@ export const Contact = () => {
           <input
             type="text"
             name="user_company"
-            placeholder="Company"
+            placeholder="Company (Optional)"
             className="contact-input-field"
           />
           <textarea
