@@ -9,7 +9,7 @@ import { BiPlus } from "react-icons/bi";
 const timelineObjects = [
   {
     title: "Burak Bora High School - Istanbul",
-    description: "Four year's of High School education",
+    description: "Four years of High School education",
     date: "2015 - 2019",
     type: Type.education,
   },
