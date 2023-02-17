@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { ProjectBox } from "./ProjectBox";
 
 export enum Type {
-  Desktop = "Desktop",
   Mobile = "Mobile",
+  Desktop = "Desktop",
   Web = "Web",
 }
 export const projectList = [
@@ -13,7 +13,7 @@ export const projectList = [
     title: "My Portfolio",
     type: Type.Web,
     language: ["React", "JavaScript", "TypeScript", "CSS", "HTML"],
-    category: "Website",
+    category: "Personal Website",
     link: "https://github.com/Mitimsin/mitimsin.github.io",
     description:
       "This portfolio is a place that holds every project that I have currently worked on. It also has information about my past experiences, the education I had, and concepts that I am familiar with. This website helps me organize everything I have to share. The design and functionalities are made and customized by me using the languages above.",
@@ -28,7 +28,7 @@ export const projectList = [
     link: "https://github.com/Mitimsin/Games/tree/main/hangman",
     description:
       "This game is a classic game made modern. You can both play it with a friend that's next to you or you can push yourself to find the words from 7 categories like 'sporst, animals, movies' with over 450 words in all categories combined.",
-    fotoCount: 0,
+    fotoCount: 8,
   },
   {
     id: "kelebike",
@@ -38,8 +38,8 @@ export const projectList = [
     category: "Bike Renting Service",
     link: "https://github.com/Kelebike",
     description:
-      "Kelebike app is a bike renting service that's designed for Gebze Technical University. It helps students and the staff rent the bikes with ease and improves communication between the user and the staff. The user can check the status, return date, and more info about the bike.",
-    fotoCount: 0,
+      "Kelebike app is a bike renting service that's designed for Gebze Technical University. It helps students and the staff rent the bikes with ease and improves communication between the user and the staff. The user can check the status, return date, and more info about the bike. Made by Bisquit Team",
+    fotoCount: 6,
   },
   {
     id: "xox",
@@ -76,7 +76,7 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 export const Projects = () => {
-  const [activeTab, setActiveTab] = useState("Desktop");
+  const [activeTab, setActiveTab] = useState("Mobile");
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);

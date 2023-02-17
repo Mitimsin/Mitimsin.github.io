@@ -24,7 +24,7 @@ const technicalSkills = [
   "Dart",
   "Swift",
   "Arduino and Boards",
-  "Html",
+  "HTML",
   "CSS",
   "JavaScript",
   "React",
