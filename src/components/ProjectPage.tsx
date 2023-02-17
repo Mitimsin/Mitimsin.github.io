@@ -65,6 +65,9 @@ export const ProjectPage = (props: props) => {
             className="project-page-image-frame enter-from-left"
             style={{ backgroundImage: `url(${imagePaths[imageIndex]})` }}
           >
+            <p className="project-page-image-tracker">
+              {imageIndex + 1} / {props.project.fotoCount}
+            </p>
             <button
               className="project-page-image-button"
               onClick={() => {

@@ -92,6 +92,16 @@
   background-position: center;
 }
 
+.project-page-image-tracker {
+  margin: 20px;
+  padding: 5px 10px;
+  position: absolute;
+  top: 0;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgba(18, 18, 18, 0.5);
+}
+
 .project-page-image-button {
   display: flex;
   width: fit-content;

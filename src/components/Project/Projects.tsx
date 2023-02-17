@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { ProjectBox } from "./ProjectBox";
 
 export enum Type {
-  Mobile = "Mobile",
   Desktop = "Desktop",
+  Mobile = "Mobile",
   Web = "Web",
 }
 export const projectList = [
@@ -76,7 +76,7 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 export const Projects = () => {
-  const [activeTab, setActiveTab] = useState("Mobile");
+  const [activeTab, setActiveTab] = useState("Desktop");
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
