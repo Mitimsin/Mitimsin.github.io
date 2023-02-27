@@ -5,42 +5,7 @@ import {
 } from "react-vertical-timeline-component";
 import { ExperienceBox, Type } from "./ExperienceBox";
 import { BiPlus } from "react-icons/bi";
-
-const timelineObjects = [
-  {
-    title: "Burak Bora High School - Istanbul",
-    description: "Four years of High School education",
-    date: "2015 - 2019",
-    type: Type.education,
-  },
-  {
-    title: "IJGD - Germany",
-    description:
-      "Ran a house full of volunteers. Sailed and camped in the wildlife. Learned how to live in nature.",
-    date: "2016 - 2 Weeks",
-    type: Type.volunteering,
-  },
-  {
-    title: "IJGD - Germany",
-    description:
-      "Maintenance of the storage places, construction of a prefabricated house for a children's summer camp",
-    date: "2018 - 2 Weeks",
-    type: Type.volunteering,
-  },
-  {
-    title: "AFS Exchange Student - Dominican Republic",
-    description:
-      "Exchange Student with AFS at Dominican Republic in web development with HTML and CSS for 1 year",
-    date: "2019 - 2020",
-    type: Type.education,
-  },
-  {
-    title: "Gebze Technical University - Kocaeli",
-    description: "Computer Science Engineering student",
-    date: "2019 - Present",
-    type: Type.education,
-  },
-];
+import timelineObjects from "../../assets/TimelineObjects.json";
 
 export const Experiences = () => {
   return (
@@ -55,7 +20,7 @@ export const Experiences = () => {
                 title={object.title}
                 description={object.description}
                 date={object.date}
-                type={object.type}
+                type={object.type as Type}
               />
             );
           })}

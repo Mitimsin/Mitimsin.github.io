@@ -6,10 +6,11 @@ import { Experiences } from "./components/Experience/Experiences";
 import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Projects, projectList } from "./components/Project/Projects";
+import { Projects, Type } from "./components/Project/Projects";
 import { Skills } from "./components/Skill/Skills";
 import { ProjectPage } from "./components/ProjectPage";
 import { Link } from "react-router-dom";
+import projectList from "./assets/ProjectObjects.json";
 
 function App() {
   return (
@@ -20,7 +21,19 @@ function App() {
           return (
             <Route
               path={`/${project.id}`}
-              element={<ProjectPage key={index} project={project} />}
+              element={
+                <ProjectPage
+                  key={index}
+                  id={project.id}
+                  title={project.title}
+                  type={project.type as Type}
+                  language={project.language}
+                  category={project.category}
+                  link={project.link}
+                  description={project.description}
+                  fotoCount={project.fotoCount}
+                />
+              }
             />
           );
         })}

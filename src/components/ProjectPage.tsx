@@ -15,26 +15,24 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 interface props {
-  project: {
-    id: string;
-    title: string;
-    type: Type;
-    language: string[];
-    category: string;
-    link: string;
-    description: string;
-    fotoCount: number;
-  };
+  id: string;
+  title: string;
+  type: Type;
+  language: string[];
+  category: string;
+  link: string;
+  description: string;
+  fotoCount: number;
 }
 
 export const ProjectPage = (props: props) => {
   const [imageIndex, setImageIndex] = useState(0);
-  const projectImage = `${process.env.PUBLIC_URL}/projects/${props.project.id}/cover.png`;
+  const projectImage = `${process.env.PUBLIC_URL}/projects/${props.id}/cover.png`;
   const imagePaths: string[] = [];
 
-  for (let i = 1; i <= props.project.fotoCount; i++) {
+  for (let i = 1; i <= props.fotoCount; i++) {
     imagePaths.push(
-      `${process.env.PUBLIC_URL}/projects/${props.project.id}/foto${i}.png`
+      `${process.env.PUBLIC_URL}/projects/${props.id}/foto${i}.png`
     );
   }
 
@@ -51,7 +49,7 @@ export const ProjectPage = (props: props) => {
         Go Back
       </Link>
       <a
-        href={props.project.link}
+        href={props.link}
         target="_blank"
         rel="noopener noreferrer"
         className="project-page-button right"
@@ -59,20 +57,20 @@ export const ProjectPage = (props: props) => {
         GitHub
       </a>
       <div className="project-page">
-        <h1 className="project-page-header">{props.project.title}</h1>
+        <h1 className="project-page-header">{props.title}</h1>
         <div className="project-page-content">
           <div
             className="project-page-image-frame enter-from-left"
             style={{ backgroundImage: `url(${imagePaths[imageIndex]})` }}
           >
             <p className="project-page-image-tracker">
-              {imageIndex + 1} / {props.project.fotoCount}
+              {imageIndex + 1} / {props.fotoCount}
             </p>
             <button
               className="project-page-image-button"
               onClick={() => {
                 if (imageIndex === 0) {
-                  setImageIndex(props.project.fotoCount - 1);
+                  setImageIndex(props.fotoCount - 1);
                 } else {
                   setImageIndex(imageIndex - 1);
                 }
@@ -83,7 +81,7 @@ export const ProjectPage = (props: props) => {
             <button
               className="project-page-image-button"
               onClick={() => {
-                if (imageIndex === props.project.fotoCount - 1) {
+                if (imageIndex === props.fotoCount - 1) {
                   setImageIndex(0);
                 } else {
                   setImageIndex(imageIndex + 1);
@@ -100,19 +98,19 @@ export const ProjectPage = (props: props) => {
 
             <div>
               <p>
-                <strong>Category:</strong> {`${props.project.category}`}
+                <strong>Category:</strong> {`${props.category}`}
               </p>
               <p>
-                <strong>Platform:</strong> {`${props.project.type}`}
+                <strong>Platform:</strong> {`${props.type}`}
               </p>
               <p>
                 <strong>
-                  Language{props.project.language.length === 1 ? "" : "s"} used:
+                  Language{props.language.length === 1 ? "" : "s"} used:
                 </strong>{" "}
-                {`${props.project.language.join(`, `)}`}
+                {`${props.language.join(`, `)}`}
               </p>
               <p>
-                <strong>Description:</strong> {`${props.project.description}`}
+                <strong>Description:</strong> {`${props.description}`}
               </p>
             </div>
           </div>
