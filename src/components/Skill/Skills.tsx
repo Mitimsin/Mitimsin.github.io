@@ -29,6 +29,7 @@ const technicalSkills = [
   "JavaScript",
   "React",
   "TypeScript",
+  "React Native",
 ];
 
 const softSkills = [
