@@ -28,5 +28,17 @@
     "description": "Computer Science Engineering student",
     "date": "2019 - Present",
     "type": "education"
+  },
+  {
+    "title": "MayaICT A.Ş. - Istanbul",
+    "description": "Network engineer internship in Maya ICT",
+    "date": "2023 - 2 Months",
+    "type": "work"
+  },
+  {
+    "title": "Confido A.Ş. - Istanbul",
+    "description": "Front-end developer for Confido. React framework Web Design and Web app development",
+    "date": "2023 - Present",
+    "type": "work"
   }
 ]
