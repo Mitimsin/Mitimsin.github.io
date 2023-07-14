@@ -5,9 +5,12 @@ import {
 } from "react-vertical-timeline-component";
 import { ExperienceBox, Type } from "./ExperienceBox";
 import { BiPlus } from "react-icons/bi";
-import timelineObjects from "../../assets/TimelineObjects.json";
+import { useContext } from "react";
+import { DataContext } from "../../App";
 
 export const Experiences = () => {
+  const { timelineObjects } = useContext(DataContext);
+
   return (
     <section className="experience" id="experiences">
       <div className="experience-tree">

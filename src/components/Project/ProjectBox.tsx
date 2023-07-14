@@ -4,17 +4,16 @@ interface props {
   id: string;
   title: string;
   category: string;
+  url: string;
 }
 
 export const ProjectBox = (props: props) => {
-  const projectImage = `${process.env.PUBLIC_URL}/projects/${props.id}/cover.png`;
-
   return (
     <Link
       to={`/${props.id}`}
       className="project-box slideInLeft"
       style={{
-        backgroundImage: `url(${projectImage}`,
+        backgroundImage: `url(${props.url}`,
       }}
     >
       <span className="project-text">

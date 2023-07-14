@@ -141,6 +141,30 @@
   overflow: hidden;
 }
 
+.project-page-loading-zone {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-page-loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 10px solid var(--primaryColor);
+  border-radius: 30px;
+  padding: 60px 70px;
+  gap: 25px;
+}
+
+.project-page-loading-text {
+  color: #121212;
+  font-size: 30px;
+}
+
 p {
   margin: 10px 0;
 }

@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import "../../styles/skill.css";
-import { useEffect } from "react";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase";
+
 import { SkillField } from "./SkillField";
-import cvFile from "../../assets/cv.pdf";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
@@ -51,9 +53,23 @@ const hobbySkills = [
 ];
 
 export const Skills = () => {
+  const [cvFile, setCvFile] = useState("");
+
   useEffect(() => {
+    const fetchCvFile = async () => {
+      try {
+        const cvFileRef = ref(storage, "Mert Gürer CV.pdf");
+        const downloadURL = await getDownloadURL(cvFileRef);
+        setCvFile(downloadURL);
+      } catch (error) {
+        console.error("Error fetching CV file: ", error);
+      }
+    };
+
     const skillFields = document.querySelectorAll(".skill-field, .skill-cv");
     skillFields.forEach((el) => observer.observe(el));
+
+    fetchCvFile();
   });
 
   return (
@@ -76,7 +92,8 @@ export const Skills = () => {
         <p>For more information check out my resume from here</p>
         <a
           href={cvFile}
-          download="Mert Gürer cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="skill-cv-button-box"
         >
           <button className="skill-cv-button">Download</button>

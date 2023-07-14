@@ -1,13 +1,9 @@
 import "../../styles/projects.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProjectBox } from "./ProjectBox";
-import projectList from "../../assets/ProjectObjects.json";
-
-export enum Type {
-  Mobile = "Mobile",
-  Desktop = "Desktop",
-  Web = "Web",
-}
+import { DataContext } from "../../App";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref } from "firebase/storage";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
@@ -20,15 +16,13 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 export const Projects = () => {
+  const { projects } = useContext(DataContext);
   const [activeTab, setActiveTab] = useState("Mobile");
+  const [urls, setUrls] = useState<{ id: string; url: string }[]>();
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
-
-  const types = Object.keys(Type).filter(
-    (k) => typeof Type[k as keyof typeof Type] === "string"
-  );
 
   useEffect(() => {
     const projectFields = document.querySelectorAll(
@@ -36,6 +30,27 @@ export const Projects = () => {
     );
     projectFields.forEach((el) => observer.observe(el));
   });
+
+  useEffect(() => {
+    const fecthCoverImage = async () => {
+      const tempUrls = [];
+
+      for (const p of projects) {
+        try {
+          const fileRef = ref(storage, `${p.id}/cover.png`);
+          const downloadURL = await getDownloadURL(fileRef);
+          tempUrls.push({ id: p.id, url: downloadURL });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      setUrls(tempUrls);
+    };
+
+    fecthCoverImage();
+  }, [projects]);
+
+  const types = ["Mobile", "Desktop", "Web"];
 
   return (
     <section className="projects" id="projects">
@@ -57,21 +72,22 @@ export const Projects = () => {
           );
         })}
       </div>
-
       <div className="project-tab slideInLeft">
-        {projectList.map((project, index) => {
-          if (project.type === activeTab) {
-            return (
-              <ProjectBox
-                key={index}
-                id={project.id}
-                title={project.title}
-                category={project.category}
-              />
-            );
-          }
-          return null;
-        })}
+        {urls &&
+          projects.map((project, index) => {
+            if (project.type === activeTab) {
+              return (
+                <ProjectBox
+                  key={index}
+                  id={project.id}
+                  title={project.title}
+                  category={project.category}
+                  url={urls?.find((obj) => obj.id === project.id)!.url}
+                />
+              );
+            }
+            return null;
+          })}
       </div>
     </section>
   );
