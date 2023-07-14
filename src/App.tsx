@@ -12,22 +12,26 @@ import { Skills } from "./components/Skill/Skills";
 import { ProjectPage } from "./components/ProjectPage";
 import { Link } from "react-router-dom";
 import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, storage } from "./firebase";
+import { getDownloadURL, ref } from "firebase/storage";
 
 export const DataContext = React.createContext<{
   projects: ProjectTemplate[];
   timelineObjects: TimelineObjectTemplate[];
-}>({ projects: [], timelineObjects: [] });
+  skills: SkillsTemplate[];
+  cvFile: string;
+}>({ projects: [], timelineObjects: [], skills: [], cvFile: "" });
 
 function App() {
   const [projects, setProjects] = useState<ProjectTemplate[]>();
   const [timelineObjects, setTimelineObjects] =
     useState<TimelineObjectTemplate[]>();
+  const [skills, setSkills] = useState<SkillsTemplate[]>();
+  const [cvFile, setCvFile] = useState<string>();
 
   useEffect(() => {
     const fecthProjects = async () => {
       const q = query(collection(db, "Projects"));
-
       const querySnapshot = await getDocs(q);
 
       const values = querySnapshot.docs.map(
@@ -39,7 +43,6 @@ function App() {
 
     const fecthTimelineObjects = async () => {
       const q = query(collection(db, "TimelineObjects"));
-
       const querySnapshot = await getDocs(q);
 
       const values = querySnapshot.docs.map(
@@ -49,14 +52,39 @@ function App() {
       setTimelineObjects(values);
     };
 
-    fecthProjects();
+    const fecthSkills = async () => {
+      const q = query(collection(db, "Skills"));
+      const querySnapshot = await getDocs(q);
+
+      const values = querySnapshot.docs.map(
+        (doc) => doc.data() as SkillsTemplate
+      );
+
+      setSkills(values);
+    };
+
+    const fetchCvFile = async () => {
+      try {
+        const cvFileRef = ref(storage, "Mert Gürer CV.pdf");
+        const downloadURL = await getDownloadURL(cvFileRef);
+        setCvFile(downloadURL);
+      } catch (error) {
+        console.error("Error fetching CV file: ", error);
+      }
+    };
+
     fecthTimelineObjects();
+    fecthProjects();
+    fecthSkills();
+    fetchCvFile();
   }, []);
 
   return (
     <>
-      {projects && timelineObjects && (
-        <DataContext.Provider value={{ projects, timelineObjects }}>
+      {projects && timelineObjects && skills && cvFile && (
+        <DataContext.Provider
+          value={{ projects, timelineObjects, skills, cvFile }}
+        >
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Portfolio />} />
@@ -137,4 +165,9 @@ interface TimelineObjectTemplate {
   description: string;
   date: string;
   type: TimelineObjectType;
+}
+
+interface SkillsTemplate {
+  id: string;
+  skills: string[];
 }

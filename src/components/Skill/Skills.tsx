@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "../../styles/skill.css";
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
 
 import { SkillField } from "./SkillField";
+import { DataContext } from "../../App";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
@@ -15,61 +14,12 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
-const technicalSkills = [
-  "C",
-  "C++",
-  "Java",
-  "Linux",
-  "Python",
-  "Excel",
-  "Flutter",
-  "Dart",
-  "Swift",
-  "Arduino and Boards",
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React",
-  "TypeScript",
-  "React Native",
-];
-
-const softSkills = [
-  "Team Collaborator",
-  "Like to teach and eager to learn",
-  "Good communication skills",
-  "Self-sustained",
-  "Hard working",
-];
-
-const hobbySkills = [
-  "Tennis",
-  "Ski",
-  "Swimming",
-  "Table Tennis",
-  "Wind Surf",
-  "Legos",
-  "Video Games",
-];
-
 export const Skills = () => {
-  const [cvFile, setCvFile] = useState("");
+  const { skills, cvFile } = useContext(DataContext);
 
   useEffect(() => {
-    const fetchCvFile = async () => {
-      try {
-        const cvFileRef = ref(storage, "Mert Gürer CV.pdf");
-        const downloadURL = await getDownloadURL(cvFileRef);
-        setCvFile(downloadURL);
-      } catch (error) {
-        console.error("Error fetching CV file: ", error);
-      }
-    };
-
     const skillFields = document.querySelectorAll(".skill-field, .skill-cv");
     skillFields.forEach((el) => observer.observe(el));
-
-    fetchCvFile();
   });
 
   return (
@@ -77,15 +27,24 @@ export const Skills = () => {
       <div className="spacer wave"></div>
       <h1 className="skill-header">My Skills</h1>
       <div className="skill-fields">
-        <SkillField title="Technical Skills" skills={technicalSkills} />
+        <SkillField
+          title="Technical Skills"
+          skills={skills.find((obj) => obj.id === "technicalSkills")!.skills}
+        />
         <div
           style={{
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <SkillField title="Soft Skills" skills={softSkills} />
-          <SkillField title="Hobby Skills" skills={hobbySkills} />
+          <SkillField
+            title="Soft Skills"
+            skills={skills.find((obj) => obj.id === "softSkills")!.skills}
+          />
+          <SkillField
+            title="Hobby Skills"
+            skills={skills.find((obj) => obj.id === "hobbySkills")!.skills}
+          />
         </div>
       </div>
       <div className="skill-cv slideInRight">

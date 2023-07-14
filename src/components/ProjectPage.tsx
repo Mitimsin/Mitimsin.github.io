@@ -170,7 +170,7 @@ export const ProjectPage = (props: props) => {
       ) : (
         <div className="project-page-loading-zone">
           <div className="project-page-loading-box">
-            <p className="project-page-loading-text">Loading project details</p>
+            <p className="project-page-loading-text">Loading Project Details</p>
             <Dots color="#3b5249" size={25} />
           </div>
         </div>
