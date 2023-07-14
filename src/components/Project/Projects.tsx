@@ -73,21 +73,20 @@ export const Projects = () => {
         })}
       </div>
       <div className="project-tab slideInLeft">
-        {urls &&
-          projects.map((project, index) => {
-            if (project.type === activeTab) {
-              return (
-                <ProjectBox
-                  key={index}
-                  id={project.id}
-                  title={project.title}
-                  category={project.category}
-                  url={urls?.find((obj) => obj.id === project.id)!.url}
-                />
-              );
-            }
-            return null;
-          })}
+        {projects.map((project, index) => {
+          if (project.type === activeTab) {
+            return (
+              <ProjectBox
+                key={index}
+                id={project.id}
+                title={project.title}
+                category={project.category}
+                url={urls?.find((obj) => obj.id === project.id)!.url!}
+              />
+            );
+          }
+          return null;
+        })}
       </div>
     </section>
   );

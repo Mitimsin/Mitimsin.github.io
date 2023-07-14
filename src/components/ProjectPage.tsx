@@ -5,7 +5,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { ProjectType } from "../App";
 import { storage } from "../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
-import CircularProgress from "@mui/material/CircularProgress";
+import Dots from "react-activity/dist/Dots";
+import "react-activity/dist/Dots.css";
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((el) => {
@@ -89,10 +90,25 @@ export const ProjectPage = (props: props) => {
           <div className="project-page">
             <h1 className="project-page-header">{props.title}</h1>
             <div className="project-page-content">
-              <div
-                className="project-page-image-frame enter-from-left"
-                style={{ backgroundImage: `url(${projectImages[imageIndex]})` }}
-              >
+              <div className="project-page-image-frame enter-from-left">
+                {projectImages.map((image, index) => (
+                  <img
+                    className={`project-page-image ${
+                      index === imageIndex
+                        ? "active"
+                        : index === imageIndex - 1
+                        ? "prev"
+                        : index === imageIndex + 1
+                        ? "next"
+                        : index === 0
+                        ? "prev"
+                        : "next"
+                    }`}
+                    src={image}
+                    alt=""
+                    key={index}
+                  />
+                ))}
                 <p className="project-page-image-tracker">
                   {imageIndex + 1} / {props.fotoCount}
                 </p>
@@ -154,10 +170,8 @@ export const ProjectPage = (props: props) => {
       ) : (
         <div className="project-page-loading-zone">
           <div className="project-page-loading-box">
-            <p className="project-page-loading-text">
-              Loading project details...
-            </p>
-            <CircularProgress color="success" />
+            <p className="project-page-loading-text">Loading project details</p>
+            <Dots color="#3b5249" size={25} />
           </div>
         </div>
       )}
