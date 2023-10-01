@@ -42,6 +42,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [currentSection, setCurrentSection] = useState<string>("home");
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   const menuButton = document.querySelector(".nav-links");
   const navbarStyle = document.querySelector(".navbar");
@@ -127,11 +128,13 @@ export const Navbar = () => {
           {navbarPageMembers.map((member, index) => (
             <NavbarPageButton
               key={index}
+              index={index}
               name={member}
+              hoverIndex={hoverIndex}
+              setHoverIndex={setHoverIndex}
               currentSection={currentSection}
               screenWidth={screenWidth}
               isOpen={isOpen}
-              extraClass={`speed-${index}`}
               handleOnClick={() => {
                 setIsOpen(false);
               }}
@@ -142,12 +145,12 @@ export const Navbar = () => {
           {navbarSocialMembers.map((member, index) => (
             <NavbarSocialButton
               key={index}
+              index={index + navbarPageMembers.length}
               logo={member.logo}
               size={member.size}
               url={member.link}
               screenWidth={screenWidth}
               isOpen={isOpen}
-              extraClass={`speed-${index + navbarPageMembers.length}`}
               handleOnClick={() => {
                 setIsOpen(false);
               }}

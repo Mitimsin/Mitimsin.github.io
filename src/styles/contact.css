@@ -18,6 +18,7 @@
   margin-bottom: 30px;
   color: rgba(255, 255, 255, 0.6);
   z-index: 1;
+  font-size: 16px;
 }
 
 .contact-area {
@@ -70,6 +71,21 @@
 .contact-input-field:focus::placeholder {
   color: #121212;
   opacity: 0.7;
+}
+
+.contact-mail-button {
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+
+  transition: all 200ms ease-in-out;
+}
+
+.contact-mail-button:hover {
+  scale: 1.07;
 }
 
 @media only screen and (max-width: 1170px) {

@@ -1,11 +1,10 @@
-import "../styles/project_page.css";
+import "../styles/project-page.css";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { ProjectType } from "../App";
+import { LoadingPage, ProjectType } from "../App";
 import { storage } from "../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
-import Dots from "react-activity/dist/Dots";
 import "react-activity/dist/Dots.css";
 
 const observer = new IntersectionObserver((entries) => {
@@ -76,6 +75,7 @@ export const ProjectPage = (props: props) => {
     <div>
       {projectImages ? (
         <>
+          <LoadingPage faint={true} />
           <Link to="/#skills" className="project-page-button left">
             Go Back
           </Link>
@@ -168,12 +168,7 @@ export const ProjectPage = (props: props) => {
           </div>
         </>
       ) : (
-        <div className="project-page-loading-zone">
-          <div className="project-page-loading-box">
-            <p className="project-page-loading-text">Loading Project Details</p>
-            <Dots color="#3b5249" size={25} />
-          </div>
-        </div>
+        <LoadingPage />
       )}
     </div>
   );

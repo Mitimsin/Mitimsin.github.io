@@ -35,12 +35,12 @@ export const Footer = () => {
         {navbarSocialMembers.map((member, index) => (
           <NavbarSocialButton
             key={index}
+            index={index}
             logo={member.logo}
             size={member.size}
             url={member.link}
             screenWidth={0}
             isOpen={isOpen}
-            extraClass={`speed-${index} footer-social-icons`}
             handleOnClick={() => {}}
           />
         ))}

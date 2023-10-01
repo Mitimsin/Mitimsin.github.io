@@ -38,19 +38,25 @@
 
 .page-link-button {
   margin: 0 17px;
-  opacity: 0.7 !important;
+  opacity: 0.7;
+  transition: all 300ms ease-in-out;
+
+  visibility: visible;
 }
 .page-link-button:hover {
-  opacity: 1 !important;
-  transform: scale(1.02) !important;
+  opacity: 1;
+  transform: scale(1.02);
 }
 
-.page-link-button-active {
-  margin: 0 20px;
-  opacity: 1 !important;
+.page-link-button.active {
+  opacity: 1;
+  transform: scale(1.02);
 }
-.page-link-button-active:hover {
-  transform: scale(1.02) !important;
+
+.page-link-button.blur {
+  filter: blur(1px);
+  scale: 0.97;
+  opacity: 0.5;
 }
 
 /* ======= social navigators ======= */
@@ -210,56 +216,85 @@
     opacity: 0;
     filter: blur(5px);
     transform: translateY(-20%);
+    visibility: visible;
+  }
+  to {
+    opacity: 0.7;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes popInSocial {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(-20%);
+    visibility: visible;
   }
   to {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
-    visibility: visible;
   }
 }
 
 .popIn {
   visibility: hidden;
-  animation: popIn 0.7s ease-in-out forwards;
+  animation: popIn 700ms ease-in-out;
 }
 
-.popIn.speed-0 {
+.popInSocial {
+  visibility: hidden;
+  animation: popInSocial 700ms ease-in-out;
+}
+
+.popIn.speed-0,
+.popInSocial.speed-0 {
   animation-delay: 0s;
 }
 
-.popIn.speed-1 {
+.popIn.speed-1,
+.popInSocial.speed-1 {
   animation-delay: 0.1s;
 }
 
-.popIn.speed-2 {
+.popIn.speed-2,
+.popInSocial.speed-2 {
   animation-delay: 0.2s;
 }
 
-.popIn.speed-3 {
+.popIn.speed-3,
+.popInSocial.speed-3 {
   animation-delay: 0.3s;
 }
 
-.popIn.speed-4 {
+.popIn.speed-4,
+.popInSocial.speed-4 {
   animation-delay: 0.4s;
 }
 
-.popIn.speed-5 {
+.popIn.speed-5,
+.popInSocial.speed-5 {
   animation-delay: 0.5s;
 }
 
-.popIn.speed-6 {
+.popIn.speed-6,
+.popInSocial.speed-6 {
   animation-delay: 0.6s;
 }
 
-.popIn.speed-7 {
+.popIn.speed-7,
+.popInSocial.speed-7 {
   animation-delay: 0.7s;
 }
 
-.popIn.speed-8 {
+.popIn.speed-8,
+.popInSocial.speed-8 {
   animation-delay: 0.8s;
 }
 
-.popIn.speed-9 {
+.popIn.speed-9,
+.popInSocial.speed-9 {
   animation-delay: 0.9s;
 }

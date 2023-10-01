@@ -6,6 +6,7 @@ import { TfiEmail } from "react-icons/tfi";
 export const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
   const emailRegex = /\S+@\S+\.\S+/;
+  const [buttonText, setButtonText] = useState("Send");
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,15 +68,28 @@ export const Contact = () => {
     }
   };
 
-  const [buttonText, setButtonText] = useState("Send");
+  const myMail = "merrtgurer@gmail.com";
+
+  const openMail = () => {
+    const recipient = myMail;
+
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
+      ""
+    )}&body=${encodeURIComponent("")}`;
+
+    window.location.href = mailtoLink;
+  };
 
   return (
     <section className="contact" id="contact">
       <div className="spacer wave2"></div>
       <h1 className="contact-header ">Have Some Questions?</h1>
-      <p className="contact-text">
-        mert.gurer@hotmail.com.tr <br /> +90 534 069 97 79
-      </p>
+      <div className="contact-text">
+        <button className="contact-mail-button" onClick={() => openMail()}>
+          {myMail}
+        </button>
+        <br /> +90 534 069 97 79
+      </div>
       <div className="contact-area">
         <div className="contact-image">
           <TfiEmail size={350} />

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Bounce from "react-activity/dist/Bounce";
+import "react-activity/dist/Bounce.css";
 
 import { Contact } from "./components/Contact";
 import { Experiences } from "./components/Experience/Experiences";
@@ -15,6 +17,9 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { db, storage } from "./firebase";
 import { getDownloadURL, ref } from "firebase/storage";
 
+import foto from "./assets/image/foto_1.jpg";
+import logo from "./assets/image/logo.png";
+
 export const DataContext = React.createContext<{
   projects: ProjectTemplate[];
   timelineObjects: TimelineObjectTemplate[];
@@ -28,6 +33,7 @@ function App() {
     useState<TimelineObjectTemplate[]>();
   const [skills, setSkills] = useState<SkillsTemplate[]>();
   const [cvFile, setCvFile] = useState<string>();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const fecthProjects = async () => {
@@ -81,7 +87,7 @@ function App() {
 
   return (
     <>
-      {projects && timelineObjects && skills && cvFile && (
+      {projects && timelineObjects && skills && cvFile && isReady ? (
         <DataContext.Provider
           value={{ projects, timelineObjects, skills, cvFile }}
         >
@@ -113,7 +119,17 @@ function App() {
             </Routes>
           </BrowserRouter>
         </DataContext.Provider>
+      ) : (
+        <LoadingPage />
       )}
+      <ImagePreloader
+        imageUrl={foto}
+        onImageLoad={() => {
+          setTimeout(() => {
+            setIsReady(true);
+          }, 2000);
+        }}
+      />
     </>
   );
 }
@@ -121,6 +137,7 @@ function App() {
 const Portfolio = () => {
   return (
     <div>
+      <LoadingPage faint={true} />
       <Navbar />
       <Home />
       <Experiences />
@@ -142,6 +159,34 @@ const ErrorPage = () => {
     </div>
   );
 };
+
+export const LoadingPage = ({ faint = false }) => {
+  return (
+    <div className={`loading-frame ${faint ? "faint" : ""}`}>
+      <Bounce color="#fff" size={31} speed={0.77} />
+      <div className="loading-logo-box">
+        <img src={logo} alt="" className="loading-logo-icon" />
+      </div>
+    </div>
+  );
+};
+
+interface ImagePreloaderProps {
+  imageUrl: string;
+  onImageLoad: () => void;
+}
+
+function ImagePreloader({ imageUrl, onImageLoad }: ImagePreloaderProps) {
+  useEffect(() => {
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = () => {
+      onImageLoad();
+    };
+  }, [imageUrl, onImageLoad]);
+
+  return null;
+}
 
 export default App;
 
