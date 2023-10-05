@@ -93,7 +93,7 @@ function App() {
         >
           <HashRouter basename="/">
             <Routes>
-              <Route exact path="/" element={<Portfolio />} />
+              <Route path="/" element={<Portfolio />} />
               {projects.map((project, index) => {
                 return (
                   <Route
@@ -117,7 +117,7 @@ function App() {
               })}
               <Route path="*" element={<ErrorPage />} />
             </Routes>
-          </HashRout>
+          </HashRouter>
         </DataContext.Provider>
       ) : (
         <LoadingPage />
