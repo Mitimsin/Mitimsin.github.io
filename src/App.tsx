@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bounce from "react-activity/dist/Bounce";
 import "react-activity/dist/Bounce.css";
 
@@ -91,7 +91,7 @@ function App() {
         <DataContext.Provider
           value={{ projects, timelineObjects, skills, cvFile }}
         >
-          <HashRouter basename="/">
+          <BrowserRouter basename="/">
             <Routes>
               <Route path="/" element={<Portfolio />} />
               {projects.map((project, index) => {
@@ -117,7 +117,7 @@ function App() {
               })}
               <Route path="*" element={<ErrorPage />} />
             </Routes>
-          </HashRouter>
+          </BrowserRouter>
         </DataContext.Provider>
       ) : (
         <LoadingPage />
