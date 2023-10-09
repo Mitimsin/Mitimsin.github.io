@@ -134,6 +134,10 @@
   transition: background-size 0.4s, background-position 0s 0.4s;
 }
 
+.contact-form-button.blur {
+  opacity: 0.4;
+}
+
 .contact-form-button:hover {
   --_p: 100%;
   color: #121212;

@@ -22,7 +22,7 @@ export const navbarSocialMembers = [
   {
     logo: FaGithub,
     size: 28,
-    link: "https://github.com/Mitimsin",
+    link: "https://github.com/mertgurer",
   },
   /*   {
     logo: FaTwitter,

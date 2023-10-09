@@ -6,7 +6,7 @@ import { TfiEmail } from "react-icons/tfi";
 export const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
   const emailRegex = /\S+@\S+\.\S+/;
-  const [buttonText, setButtonText] = useState("Send");
+  const [sending, setSending] = useState(false);
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export const Contact = () => {
       return;
     }
 
-    setButtonText("Sending...");
+    setSending(true);
 
     if (form.current) {
       emailjs
@@ -48,21 +48,13 @@ export const Contact = () => {
         )
         .then(
           (result) => {
-            console.log(result.text);
-            setButtonText("Sent");
+            alert("Your message has been sent successfully.");
             form.current?.reset();
-
-            setTimeout(() => {
-              setButtonText("Send");
-            }, 5000);
+            setSending(false);
           },
           (error) => {
-            console.log(error.text);
-            setButtonText("Failed!");
-
-            setTimeout(() => {
-              setButtonText("Send");
-            }, 5000);
+            alert("There was an error while sending the message.");
+            setSending(false);
           }
         );
     }
@@ -121,8 +113,8 @@ export const Contact = () => {
           />
           <input
             type="submit"
-            value={buttonText}
-            className="contact-form-button"
+            disabled={sending}
+            className={`contact-form-button ${sending ? "blur" : ""}`}
           />
         </form>
       </div>

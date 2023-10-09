@@ -54,7 +54,6 @@
 }
 
 .page-link-button.blur {
-  filter: blur(1px);
   scale: 0.97;
   opacity: 0.5;
 }

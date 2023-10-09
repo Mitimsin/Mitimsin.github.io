@@ -18,7 +18,7 @@ const observer = new IntersectionObserver((entries) => {
 export const Projects = () => {
   const { projects } = useContext(DataContext);
   const [activeTab, setActiveTab] = useState("Mobile");
-  const [urls, setUrls] = useState<{ id: string; url: string }[]>();
+  const [imageUrls, setImageUrls] = useState<{ id: number; url: string }[]>();
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -37,14 +37,14 @@ export const Projects = () => {
 
       for (const p of projects) {
         try {
-          const fileRef = ref(storage, `${p.id}/cover.png`);
+          const fileRef = ref(storage, `${p.url}/cover.png`);
           const downloadURL = await getDownloadURL(fileRef);
           tempUrls.push({ id: p.id, url: downloadURL });
         } catch (error) {
           console.error(error);
         }
       }
-      setUrls(tempUrls);
+      setImageUrls(tempUrls);
     };
 
     fecthCoverImage();
@@ -78,10 +78,10 @@ export const Projects = () => {
             return (
               <ProjectBox
                 key={index}
-                id={project.id}
+                url={project.url}
                 title={project.title}
                 category={project.category}
-                url={urls?.find((obj) => obj.id === project.id)!.url!}
+                imageUrl={imageUrls?.find((obj) => obj.id === project.id)!.url!}
               />
             );
           }

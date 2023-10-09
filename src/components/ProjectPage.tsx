@@ -18,12 +18,13 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 interface props {
-  id: string;
+  id: number;
+  url: string;
   title: string;
   type: ProjectType;
   language: string[];
   category: string;
-  link: string;
+  githubLink: string;
   description: string;
   fotoCount: number;
 }
@@ -43,7 +44,7 @@ export const ProjectPage = (props: props) => {
   useEffect(() => {
     const fecthCoverImage = async () => {
       try {
-        const fileRef = ref(storage, `${props.id}/cover.png`);
+        const fileRef = ref(storage, `${props.url}/cover.png`);
         const downloadURL = await getDownloadURL(fileRef);
         setProjectCoverImage(downloadURL);
       } catch (error) {
@@ -56,7 +57,7 @@ export const ProjectPage = (props: props) => {
         try {
           const fileRef = ref(
             storage,
-            `${props.id}/foto${i.toString().padStart(2, "0")}.png`
+            `${props.url}/foto${i.toString().padStart(2, "0")}.png`
           );
           const downloadURL = await getDownloadURL(fileRef);
           tempUrls.push(downloadURL);
@@ -69,7 +70,7 @@ export const ProjectPage = (props: props) => {
     };
 
     fecthCoverImage();
-  }, [props.fotoCount, props.id]);
+  }, [props.fotoCount, props.url]);
 
   return (
     <div>
@@ -80,7 +81,7 @@ export const ProjectPage = (props: props) => {
             Go Back
           </Link>
           <a
-            href={props.link}
+            href={props.githubLink}
             target="_blank"
             rel="noopener noreferrer"
             className="project-page-button right"

@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 
 interface props {
-  id: string;
+  url: string;
   title: string;
   category: string;
-  url: string;
+  imageUrl: string;
 }
 
 export const ProjectBox = (props: props) => {
   return (
     <Link
-      to={`/${props.id}`}
+      to={`/${props.url}`}
       className="project-box slideInLeft"
       style={{
-        backgroundImage: `url(${props.url}`,
+        backgroundImage: `url(${props.imageUrl}`,
       }}
     >
       <span className="project-text">

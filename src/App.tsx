@@ -44,7 +44,7 @@ function App() {
         (doc) => doc.data() as ProjectTemplate
       );
 
-      setProjects(values);
+      setProjects(values.sort((a, b) => a.id - b.id));
     };
 
     const fecthTimelineObjects = async () => {
@@ -55,7 +55,7 @@ function App() {
         (doc) => doc.data() as TimelineObjectTemplate
       );
 
-      setTimelineObjects(values);
+      setTimelineObjects(values.sort((a, b) => a.id - b.id));
     };
 
     const fecthSkills = async () => {
@@ -98,16 +98,17 @@ function App() {
                 return (
                   <Route
                     key={index}
-                    path={`/${project.id}`}
+                    path={`/${project.url}`}
                     element={
                       <ProjectPage
                         key={index}
                         id={project.id}
+                        url={project.url}
                         title={project.title}
                         type={project.type}
                         language={project.language}
                         category={project.category}
-                        link={project.link}
+                        githubLink={project.githubLink}
                         description={project.description}
                         fotoCount={project.fotoCount}
                       />
@@ -193,19 +194,21 @@ export default App;
 export type ProjectType = "Mobile" | "Desktop" | "Web";
 
 interface ProjectTemplate {
-  id: string;
+  id: number;
   title: string;
   type: ProjectType;
   language: string[];
   category: string;
-  link: string;
+  githubLink: string;
   description: string;
   fotoCount: number;
+  url: string;
 }
 
 type TimelineObjectType = "education" | "work" | "volunteering";
 
 interface TimelineObjectTemplate {
+  id: number;
   title: string;
   description: string;
   date: string;
