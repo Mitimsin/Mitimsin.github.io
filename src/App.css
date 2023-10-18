@@ -95,6 +95,7 @@ button {
 
 .flip {
   transform: rotate(180deg) translateY(-2px);
+  z-index: -1;
 }
 
 .bottom {
