@@ -31,8 +31,7 @@ export const NavbarPageButton = (props: props) => {
   }, [props.isOpen]);
 
   return (
-    <a
-      href={`#${props.name}`}
+    <button
       className={`page-link-button speed-${props.index} makeVisible 
         ${props.currentSection === props.name ? "active" : ""} 
         ${
@@ -54,13 +53,20 @@ export const NavbarPageButton = (props: props) => {
       onMouseEnter={() => props.setHoverIndex(props.index)}
       onMouseLeave={() => props.setHoverIndex(-1)}
       onClick={() => {
-        document
-          .getElementById(props.name)
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const targetSection = document.getElementById(props.name);
+        if (targetSection) {
+          const targetOffset = targetSection.getBoundingClientRect().top;
+          const bodyRect = document.body.getBoundingClientRect();
+          const targetPosition = targetOffset - bodyRect.top;
+          window.scroll({
+            top: targetPosition - 80,
+            behavior: "smooth",
+          });
+        }
         props.handleOnClick();
       }}
     >
       {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
-    </a>
+    </button>
   );
 };

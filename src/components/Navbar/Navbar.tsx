@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { NavbarPageButton } from "./NavbarPageButton";
 import { NavbarSocialButton } from "./NavbarSocialButton";
+import { Link } from "react-router-dom";
 
 /* ======= declare page nav buttons and social buttons ======= */
 const navbarPageMembers = ["home", "experiences", "skills", "projects"];
@@ -114,13 +115,13 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="brand">
-        <a href="/">
+        <Link to="/">
           <span style={{ fontSize: "1.5rem" }}>Mert Gürer</span>
           <span style={{ margin: "0px 5px", fontSize: "1.25rem" }}> · </span>
           <span style={{ opacity: "0.75", fontSize: "1rem" }}>
             Software Engineer
           </span>
-        </a>
+        </Link>
       </div>
 
       <div className="nav-links">
@@ -157,13 +158,24 @@ export const Navbar = () => {
             />
           ))}
         </div>
-        <a
-          href="#contact"
+        <button
           className="contact-button"
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            const targetSection = document.getElementById("contact");
+            if (targetSection) {
+              const targetOffset = targetSection.getBoundingClientRect().top;
+              const bodyRect = document.body.getBoundingClientRect();
+              const targetPosition = targetOffset - bodyRect.top;
+              window.scroll({
+                top: targetPosition - 80,
+                behavior: "smooth",
+              });
+            }
+            setIsOpen(false);
+          }}
         >
           Contact Me
-        </a>
+        </button>
       </div>
       <button
         className="menu"
