@@ -27,6 +27,7 @@ interface props {
     githubLink: string;
     description: string;
     fotoCount: number;
+    websiteLink?: string;
 }
 
 export const ProjectPage = (props: props) => {
@@ -80,14 +81,26 @@ export const ProjectPage = (props: props) => {
                     <Link to="/#skills" className="project-page-button left">
                         Go Back
                     </Link>
-                    <a
-                        href={props.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-page-button right"
-                    >
-                        GitHub
-                    </a>
+                    <div className="project-page-right-buttons">
+                        {props.websiteLink && (
+                            <Link
+                                to={props.websiteLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-page-button right"
+                            >
+                                Website
+                            </Link>
+                        )}
+                        <Link
+                            to={props.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-page-button right"
+                        >
+                            GitHub
+                        </Link>
+                    </div>
                     <div className="project-page">
                         <h1 className="project-page-header">{props.title}</h1>
                         <div className="project-page-content">
