@@ -21,13 +21,28 @@ import foto from "./assets/image/foto_1.jpg";
 import logo from "./assets/image/logo.png";
 
 export const DataContext = React.createContext<{
+    info: InfoTemplate;
+    socialLinks: SocialLinkTemplate[];
     projects: ProjectTemplate[];
     timelineObjects: TimelineObjectTemplate[];
     skills: SkillsTemplate[];
     cvFile: string;
-}>({ projects: [], timelineObjects: [], skills: [], cvFile: "" });
+}>({
+    info: {
+        introduction: "",
+        mail: "",
+        phone: "",
+    },
+    socialLinks: [],
+    projects: [],
+    timelineObjects: [],
+    skills: [],
+    cvFile: "",
+});
 
 function App() {
+    const [info, setInfo] = useState<InfoTemplate>();
+    const [socialLinks, setSocialLinks] = useState<SocialLinkTemplate[]>();
     const [projects, setProjects] = useState<ProjectTemplate[]>();
     const [timelineObjects, setTimelineObjects] =
         useState<TimelineObjectTemplate[]>();
@@ -79,6 +94,30 @@ function App() {
             }
         };
 
+        const fecthInfoData = async () => {
+            const q = query(collection(db, "Info"));
+            const querySnapshot = await getDocs(q);
+
+            const values = querySnapshot.docs.map(
+                (doc) => doc.data() as InfoTemplate
+            );
+
+            setInfo(values[0]);
+        };
+
+        const fecthSocialLinks = async () => {
+            const q = query(collection(db, "SocialLinks"));
+            const querySnapshot = await getDocs(q);
+
+            const values = querySnapshot.docs.map(
+                (doc) => doc.data() as SocialLinkTemplate
+            );
+
+            setSocialLinks(values);
+        };
+
+        fecthSocialLinks();
+        fecthInfoData();
         fecthTimelineObjects();
         fecthProjects();
         fecthSkills();
@@ -87,9 +126,22 @@ function App() {
 
     return (
         <>
-            {projects && timelineObjects && skills && cvFile && isReady ? (
+            {info &&
+            socialLinks &&
+            projects &&
+            timelineObjects &&
+            skills &&
+            cvFile &&
+            isReady ? (
                 <DataContext.Provider
-                    value={{ projects, timelineObjects, skills, cvFile }}
+                    value={{
+                        info,
+                        socialLinks,
+                        projects,
+                        timelineObjects,
+                        skills,
+                        cvFile,
+                    }}
                 >
                     <HashRouter basename="/">
                         <Routes>
@@ -224,4 +276,17 @@ interface TimelineObjectTemplate {
 interface SkillsTemplate {
     id: string;
     skills: string[];
+}
+
+interface InfoTemplate {
+    introduction: string;
+    mail: string;
+    phone: string;
+}
+
+interface SocialLinkTemplate {
+    id: string;
+    index: number;
+    link: string;
+    enabled: boolean;
 }
