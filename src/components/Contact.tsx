@@ -43,7 +43,7 @@ export const Contact = () => {
         if (form.current) {
             emailjs
                 .sendForm(
-                    "service_8f8d38r",
+                    "service_bq9e22w",
                     "template_86s8q3e",
                     form.current,
                     "JzUNGp4EWrniAzZkq"
