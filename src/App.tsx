@@ -70,7 +70,7 @@ function App() {
                 (doc) => doc.data() as TimelineObjectTemplate
             );
 
-            setTimelineObjects(values.sort((a, b) => a.id - b.id));
+            setTimelineObjects(values.sort((a, b) => b.id - a.id));
         };
 
         const fecthSkills = async () => {

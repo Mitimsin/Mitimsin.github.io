@@ -50,7 +50,7 @@ export const Projects = () => {
         fecthCoverImage();
     }, [projects]);
 
-    const types = ["Mobile", "Desktop", "Web"];
+    const types = ["Web", "Mobile", "Desktop"];
 
     return (
         <section className="projects" id="projects">
