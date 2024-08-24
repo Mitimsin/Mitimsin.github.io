@@ -17,7 +17,7 @@ const observer = new IntersectionObserver((entries) => {
 
 export const Projects = () => {
     const { projects } = useContext(DataContext);
-    const [activeTab, setActiveTab] = useState("Mobile");
+    const [activeTab, setActiveTab] = useState("Web");
     const [imageUrls, setImageUrls] = useState<{ id: number; url: string }[]>();
 
     const handleTabClick = (tab: string) => {
